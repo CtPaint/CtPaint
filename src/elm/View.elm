@@ -2,57 +2,66 @@ module View exposing (view)
 
 import Html             exposing (..)
 import Html.Attributes  exposing (..)
-import Html.Events      exposing (on, onInput, keyCode)
+import Html.Events      exposing (on, onInput, keyCode, onMouseDown)
 import Types            exposing (..)
 import Json.Decode as Json
+import Canvas exposing (Canvas, toHtml)
 
 
 -- VIEW
 
 
 view : Model -> Html Msg
-view {field} = 
+view model = 
   div
   [ class "main" ]
-  [ title
-  , inputField field
+  [ verticalToolBar model.toolBars 
+  , horitonztalToolBar model.toolBars 
+  , mainArea model
   ]
 
-
--- COMPONENTS
-
-
-title : Html Msg
-title =
-  p
-  [ classes [ "point", "big" ] ]
-  [ text "Elm Project : Go!" ]
-
-
-inputField : String -> Html Msg
-inputField str =
-  input
-  [ class        "input-field"
-  , value        str
-  , onInput      UpdateField
-  , spellcheck   False
-  , placeholder  "Check out these Msgs"
-  , onKeyDown    CheckIfEnter
+mainArea : Model -> Html Msg
+mainArea {toolBars} =
+  let {width} = toolBars in
+  div
+  [ class "main-work-area" 
+  , style
+    [ ("left", toString width) ]
   ]
   []
 
 
--- UTIL
+verticalToolBar : ToolBars -> Html Msg
+verticalToolBar {width} =
+  div
+  [ class "vertical-tool-bar" 
+  , style
+    [ ("width", toString width) ]
+  ]
+  []
 
 
-classes : List String -> Attribute Msg
-classes =
-  String.join " " >> class
+horitonztalToolBar : ToolBars -> Html Msg
+horitonztalToolBar {width, height} =
+  div
+  [ class "horizontal-tool-bar" 
+  , style
+    [ ("height", toString height) 
+    , ("left", toString width)
+    ]
+  ]
+  [ div
+    [ class "horizontal-tool-bar-edge" 
+    , HorizontalBarResize Down
+      |>ToolBar
+      |>Mouse
+      |>onMouseDown
+    ]
+    []
+  ]
 
 
-onKeyDown : (Int -> Msg) -> Attribute Msg
-onKeyDown msg =
-  on "keydown" <| Json.map msg keyCode
+
 
 
 

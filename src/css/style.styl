@@ -1,23 +1,121 @@
-almostBlack = #030907
-almostWhite = #fcf7f9
-offWhite    = #f9fcfb
-lightGray   = #d0b6a9
-red         = #f21d23
+@font-face
+  font-family HFNSS
+  src url("./hfnss.ttf")
+  
+@font-face
+  font-family HFICONS
+  src url("./ctpaint-icons.ttf")
+
+@font-face
+  font-family HFGAM
+  src url("./HFGAM.ttf")
+
+standardSize    = 2em
+biggerSize      = 4em
+wayBig          = 8em
+cellWidth       = 50px
+cellHeight      = 19px
+
+pointColor      = #b0a69a
+
+importantText   = #b39f4b
+importanterText = #e3d34b
+
+ignorable         = #807872
+veryIgnorable     = #54574d
+veryVeryIgnorable = #2a2c27
+
+background      = #030907
+backgroundx2    = #06120e
+offBackground   = #0a050d
+offBlue         = #143b2e
+actualBlack     = #000000
+
+critical        = #f21d23
+good            = #366317
+prettyBlue      = #175cfe
+
+i0 = #807672
+i1 = #57524f
+i2 = #2c2826
+i3 = #131610
+
+
+::-webkit-input-placeholder 
+  color veryIgnorable
+  
 
 body
-  background-color almostWhite
+  background backgroundx2
+  padding 0
+  margin 0
+  overflow hidden
+  
 
 .point
-  font-family Arial
+  font-family HFNSS
+  font-size 2em
   color almostBlack
   
 .big
   font-size 4em
+  
+.tool-button
+  width 20px
+  height 20px
+
+  border-top 2px solid i1
+  border-left 2px solid i1
+  border-right 2px solid i3
+  border-bottom 2px solid i3
+  text-align center
+  vertical-align middle
+  line-height 22px
+  margin-left 1px
+  &:hover
+    border-top 2px solid i3
+    border-left 2px solid i3
+    border-right 2px solid i1
+    border-bottom 2px solid i1
+    // background i1
 
 .input-field
-  font-family Arial
-  color almostBlack
+  font-family HFNSS
   font-size 2em
-  background-color offWhite
   border 2px solid lightGray
   outline none
+  
+.vertical-tool-bar
+  background i2
+  height 100%
+  // width 29px
+  border-right 1px i3 solid
+  padding-top 1px
+  position fixed
+  top 0px
+  left 0px
+  
+.horizontal-tool-bar
+  background i2
+  // height 58px
+  width 100%
+  // border-top 1px offBlue solid
+  position fixed
+  bottom 0px
+  // left 0px
+  padding-top 1px
+
+.horizontal-tool-bar-edge
+  height 3px 
+  border-top 1px offBlue solid
+  top 0px
+  left 0px
+  // background offBlue
+  cursor ns-resize
+
+.main-work-area
+  background-color critical
+  position absolute
+
+
+

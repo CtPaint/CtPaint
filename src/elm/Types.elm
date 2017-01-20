@@ -1,9 +1,32 @@
 module Types exposing (..)
 
+import Mouse exposing (Position)
+
 type Msg 
-  = UpdateField  String
-  | CheckIfEnter Int
-  | HandlePort   String
+  = Mouse MouseActivity
+
+type MouseDirection
+  = Down 
+  | Up
+  | Move Position
+
+type MouseActivity
+  = ToolBar ToolBarMsg
+  | NoOp
+
+type ToolBarMsg
+  = HorizontalBarResize MouseDirection
 
 type alias Model =
-  { field  : String }
+  { toolBars : ToolBars 
+  , globalMouseMsgs : 
+    { down : MouseActivity
+    , up : MouseActivity
+    , move : Position -> MouseActivity
+    }
+  }
+
+type alias ToolBars =
+  { width : Int
+  , height : Int
+  }

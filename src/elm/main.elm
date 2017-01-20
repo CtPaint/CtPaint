@@ -2,6 +2,8 @@ import Html
 import Types            exposing (..)
 import Ports            exposing (..)
 import View             exposing (view)
+import MouseActivity
+import Mouse
 
 
 
@@ -11,19 +13,39 @@ import View             exposing (view)
 
 main =
   Html.program
-  { init          = (Model "", Cmd.none) 
+  { init          = (init, Cmd.none) 
   , view          = view
   , update        = update
   , subscriptions = subscriptions
   }
 
 
+init : Model
+init =
+  { toolBars =
+    { width = 29
+    , height = 58
+    }
+  , globalMouseMsgs =
+    { down = NoOp
+    , up   = NoOp
+    , move = always NoOp
+    }
+  }
+
 -- SUBSCRIPTIONS
 
 
 subscriptions : Model -> Sub Msg
-subscriptions model =
-  fromJS HandlePort
+subscriptions {globalMouseMsgs} =
+  Sub.batch
+  [ Mouse.moves 
+      (globalMouseMsgs.move >> Mouse)
+  , Mouse.ups 
+      (Mouse << always globalMouseMsgs.up)
+  , Mouse.downs 
+      (Mouse << always globalMouseMsgs.down)
+  ]
 
 
 -- UPDATE
@@ -33,16 +55,7 @@ update : Msg -> Model -> (Model, Cmd Msg)
 update message model =
   case message of 
 
-    UpdateField str ->
-      Model str ! []
-
-    CheckIfEnter code ->
-      if code == 13 then 
-        Model "Submitted!" ! []
-      else
-        model ! []
-
-    HandlePort str ->
-      Model str ! []
+    Mouse activity ->
+      MouseActivity.update activity model
 
 
