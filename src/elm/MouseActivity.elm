@@ -1,13 +1,17 @@
 module MouseActivity exposing (update)
 
-import Types exposing (..)
+import Types.Model exposing (State, Model(..))
+import Types.Message exposing (Msg(..), MouseActivity(..))
 import ToolBars
 
-update : MouseActivity -> Model -> (Model, Cmd Msg)
-update activity model =
+update : MouseActivity -> State -> (Model, Cmd Msg)
+update activity state =
   case activity of 
     ToolBar msg ->
-      ToolBars.update msg model
+      ToolBars.update msg state
+
+    WorkArea msg ->
+      App state ! []
 
     NoOp ->
-      model ! []
+      App state ! []

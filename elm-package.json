@@ -1,10 +1,11 @@
 {
     "version": "1.0.2",
-    "summary": "Elm Gulp Coffeescript Stylus Lodash Browserify Boilerplate",
+    "summary": "An image editor in your web browser",
     "repository": "https://github.com/ctpaint/ctpaint.git",
     "license": "you can use it",
     "source-directories": [
-        "./src/elm"
+        "./src/elm",
+        "./src/elm/View"
     ],
     "exposed-modules": [],
     "native-modules": true,

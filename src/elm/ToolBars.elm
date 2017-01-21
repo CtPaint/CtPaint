@@ -1,36 +1,52 @@
 module ToolBars exposing (update)
 
-import Types exposing (..)
+import Types.Model exposing (State, Model(..))
+import Types.Message exposing 
+  ( Msg(..)
+  , ToolBarMsg(..)
+  , MouseDirection(..)
+  , MouseActivity(..)
+  )
 
-update : ToolBarMsg -> Model -> (Model, Cmd Msg)
-update message model =
+update : ToolBarMsg -> State -> (Model, Cmd Msg)
+update message state =
   case message of
     HorizontalBarResize mouseDirection ->
       case mouseDirection of
         Down ->
-          let {globalMouseMsgs} = model in
-          { model
-          | globalMouseMsgs =
-            { globalMouseMsgs
+          let { mouseSubs } = state in
+          App 
+          { state
+          | mouseSubs =
+            { mouseSubs
             | move =
                 Move
                 >>HorizontalBarResize
                 >>ToolBar
+            , up =
+                ToolBar (HorizontalBarResize Up)
             }
           } ! []
 
         Move position ->
-          let 
-            {toolBars, globalMouseMsgs} = 
-              model 
-          in
-          { model
+          let { toolBars, window } = state in
+          App 
+          { state
           | toolBars =
             { toolBars
             | height = 
-                position.y
+                let { height } = window.size in
+                height - position.y
             }
           } ! []
 
         Up ->
-          model ! []
+          let { mouseSubs } = state in
+          App 
+          { state
+          | mouseSubs =
+            { mouseSubs
+            | move = always NoOp
+            , up = NoOp
+            }
+          } ! []

@@ -1,34 +1,49 @@
-module View exposing (view)
+module App.View exposing (view)
 
 import Html             exposing (..)
 import Html.Attributes  exposing (..)
 import Html.Events      exposing (on, onInput, keyCode, onMouseDown)
-import Types            exposing (..)
+import Types.Model      exposing (State, ToolBars)
+import Types.Message    exposing 
+  ( Msg (..)
+  , MouseActivity(..)
+  , MouseDirection(..)
+  , ToolBarMsg(..)
+  )
 import Json.Decode as Json
 import Canvas exposing (Canvas, toHtml)
 
 
--- VIEW
-
-
-view : Model -> Html Msg
-view model = 
+view : State -> Html Msg
+view state =
   div
   [ class "main" ]
-  [ verticalToolBar model.toolBars 
-  , horitonztalToolBar model.toolBars 
-  , mainArea model
+  [ verticalToolBar state.toolBars 
+  , horitonztalToolBar state.toolBars 
+  , mainArea state
   ]
 
-mainArea : Model -> Html Msg
-mainArea {toolBars} =
-  let {width} = toolBars in
-  div
-  [ class "main-work-area" 
-  , style
-    [ ("left", toString width) ]
-  ]
-  []
+mainArea : State -> Html Msg
+mainArea {toolBars, window} =
+  let 
+    left =
+      toolBars.width
+      |> toString |> (,) "left"
+
+    height =
+      window.size.height - toolBars.height
+      |> toString |> (,) "height"
+
+    width =
+      window.size.width - toolBars.width
+      |> toString |> (,) "width"
+  in
+    div
+    [ class "main-work-area" 
+    , style
+      [ left, height, width ]
+    ]
+    []
 
 
 verticalToolBar : ToolBars -> Html Msg
