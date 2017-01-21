@@ -7,7 +7,7 @@ import Types.Model   exposing
   )
 import Types.Message exposing 
   ( Msg(..)
-  , MouseActivity(..)
+  , MouseMsg(..)
   )
 import Window        exposing (Size)
 import Maybe         exposing (withDefault)
@@ -50,26 +50,12 @@ uninitializedApp =
     { size = Nothing }
   }
 
-initState : Size -> Model
-initState size =
-  App
-  { toolBars =
-    { width = 29
-    , height = 58
-    }
-  , window = 
-      { size = size }
-  , mouseSubs =
-    { down = NoOp
-    , up   = NoOp
-    , move = always NoOp
-    }
-  }
 
 initCmd : Cmd Msg
 initCmd =
   Cmd.batch
   [ getWindowSize ]
+
 
 getWindowSize : Cmd Msg
 getWindowSize = 

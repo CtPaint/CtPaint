@@ -6,8 +6,8 @@ import Html.Events      exposing (on, onInput, keyCode, onMouseDown)
 import Types.Model      exposing (State, ToolBars)
 import Types.Message    exposing 
   ( Msg (..)
-  , MouseActivity(..)
-  , MouseDirection(..)
+  , MouseMsg(..)
+  , MouseDir(..)
   , ToolBarMsg(..)
   )
 import Json.Decode as Json

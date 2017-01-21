@@ -1,35 +1,42 @@
 module Types.Message exposing (..)
 
+
 import Mouse  exposing (Position)
 import Window exposing (Size)
 
 
 type Msg 
-  = Mouse MouseActivity
+  = Mouse MouseMsg
   | GetWindowSize (Result Error Size)
   | OnWindowResize Size
 
 type Error 
   = Error
 
-type MouseDirection
-  = Down
-  | Up
-  | Move Position
 
-type MouseActivity
+type MouseMsg
   = ToolBar ToolBarMsg
   | WorkArea WorkAreaMsg
   | NoOp 
 
+
 type ToolBarMsg
-  = HorizontalBarResize MouseDirection
+  = HorizontalBarResize MouseDir
 
 type WorkAreaMsg
-  = Pencil MouseDirection
+  = Pencil MouseDir
+
+
+
+type MouseDir
+  = Down
+  | Up
+  | Move Position
+
+
 
 type alias MouseSubs =
-  { down : MouseActivity
-  , up : MouseActivity
-  , move : Position -> MouseActivity
+  { down : MouseMsg
+  , up : MouseMsg
+  , move : Position -> MouseMsg
   }
