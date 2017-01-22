@@ -1,5 +1,6 @@
 module App.Subscriptions exposing (subscriptions)
 
+
 import Types.Model exposing (Model(..), State)
 import Types.Message exposing (Msg(OnWindowResize, Mouse))
 

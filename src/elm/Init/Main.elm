@@ -1,5 +1,6 @@
 module Init.Main exposing (..)
 
+
 import Types.Model   exposing 
   ( Model(..)
   , UninitializedState
@@ -22,8 +23,7 @@ tryInitialization state =
       List.foldr (&&) True  
       [ state.window.size /= Nothing ]
   in
-  if False then
-  --if ready then
+  if ready then
     App 
     { toolBars =
       { width = 29
