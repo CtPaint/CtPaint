@@ -6,13 +6,13 @@ import Html.Attributes  exposing (..)
 import Html.Events      exposing (onMouseDown)
 import View.Util        as Style
 import Types.Model      exposing (ToolBars)
+import Window           exposing (Size)
 import Types.Message    exposing 
   ( Msg (..)
   , MouseMsg(..)
   , MouseDir(..)
   , ToolBarMsg(..)
   )
-import Window exposing (Size)
 
 
 

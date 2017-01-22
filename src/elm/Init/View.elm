@@ -2,15 +2,10 @@ module Init.View exposing (view)
 
 
 import Html            exposing (..)
-import Html.Attributes exposing (class, style, type_, value)
-import Html.Events     exposing (on, onInput, keyCode, onMouseDown)
-
+import Html.Attributes exposing (class, style)
 import Types.Model     exposing (UninitializedState)
 import Types.Message   exposing (Msg(..))
-
 import View.Util       exposing (classes)
-
-import Components.LoadingBar as LoadingBar
 
 
 
