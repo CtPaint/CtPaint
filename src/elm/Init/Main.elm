@@ -22,7 +22,8 @@ tryInitialization state =
       List.foldr (&&) True  
       [ state.window.size /= Nothing ]
   in
-  if ready then
+  if False then
+  --if ready then
     App 
     { toolBars =
       { width = 29

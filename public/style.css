@@ -1,6 +1,26 @@
+.window-card {
+  background: i2;
+  border-top: 2px solid i1;
+  border-left: 2px solid i1;
+  border-right: 2px solid i3;
+  border-bottom: 2px solid i3;
+}
+.window-card.init {
+  width: 500px;
+  height: 310px;
+  top: 50%;
+  left: 50%;
+  margin-top: -200px;
+  margin-left: -250px;
+  position: absolute;
+}
 @font-face {
   font-family: HFNSS;
   src: url("./hfnss.ttf");
+}
+@font-face {
+  font-family: HFNSS1;
+  src: url("./HFNSSvector1.ttf");
 }
 @font-face {
   font-family: HFICONS;
@@ -8,7 +28,57 @@
 }
 @font-face {
   font-family: HFGAM;
-  src: url("./HFGAM.ttf");
+  src: url("./hfgam.ttf");
+}
+.field {
+  border-top: 2px solid #131610;
+  border-left: 2px solid #131610;
+  border-right: 2px solid #57524f;
+  border-bottom: 2px solid #57524f;
+  outline: none;
+  font-family: HFNSS;
+  color: #b0a69a;
+  font-size: 2em;
+  background: #131610;
+  -webkit-font-smoothing: none;
+  font-smooth: none;
+}
+.button {
+  border-top: 2px solid #57524f;
+  border-left: 2px solid #57524f;
+  border-right: 2px solid #131610;
+  border-bottom: 2px solid #131610;
+  outline: none;
+  font-family: HFNSS;
+  color: #b0a69a;
+  font-size: 2em;
+  background: #2c2826;
+  -webkit-font-smoothing: none;
+  font-smooth: none;
+}
+.button:hover {
+  color: #e0d6ca;
+}
+.button:active {
+  border-top: 2px solid #131610;
+  border-left: 2px solid #131610;
+  border-right: 2px solid #57524f;
+  border-bottom: 2px solid #57524f;
+}
+.loading-bar {
+  width: 398px;
+  height: 14px;
+  border: 2px solid #57524f;
+  margin: auto;
+  margin-top: 20px;
+}
+.loading-block {
+  width: 10px;
+  height: 10px;
+  background: #57724f;
+  float: left;
+  margin: 2px;
+  margin-right: 0px;
 }
 ::-webkit-input-placeholder {
   color: #54574d;
@@ -18,14 +88,6 @@ body {
   padding: 0;
   margin: 0;
   overflow: hidden;
-}
-.point {
-  font-family: HFNSS;
-  font-size: 2em;
-  color: almostBlack;
-}
-.big {
-  font-size: 4em;
 }
 .tool-button {
   width: 20px;
@@ -45,11 +107,33 @@ body {
   border-right: 2px solid #57524f;
   border-bottom: 2px solid #57524f;
 }
-.input-field {
+.main-work-area {
+  position: absolute;
+}
+.init-body {
+  position: relative;
+}
+.point {
   font-family: HFNSS;
   font-size: 2em;
-  border: 2px solid lightGray;
-  outline: none;
+  color: #b0a69a;
+  -webkit-font-smoothing: none;
+  font-smooth: none;
+  margin: 0;
+}
+.point.vector {
+  font-family: HFNSS1;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-smooth: subpixel-antialiased;
+}
+.big {
+  font-size: 4em;
+}
+.really-big {
+  font-size: 8em;
+}
+.centered-text {
+  text-align: center;
 }
 .vertical-tool-bar {
   background: #2c2826;
@@ -73,7 +157,4 @@ body {
   top: 0px;
   left: 0px;
   cursor: ns-resize;
-}
-.main-work-area {
-  position: absolute;
 }

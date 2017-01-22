@@ -32,5 +32,6 @@ update message state =
           } ! []
 
     _ -> 
+      
       Uninitialized state ! []
 

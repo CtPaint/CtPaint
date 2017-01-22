@@ -1,5 +1,6 @@
 gulp       = require 'gulp'
 autowatch  = require 'gulp-autowatch'
+concat     = require 'gulp-concat'
 source     = require 'vinyl-source-stream'
 buffer     = require 'vinyl-buffer'
 cp         = require 'child_process'
@@ -28,6 +29,7 @@ gulp.task 'coffee', ->
 
 gulp.task 'stylus', ->
   gulp.src paths.css
+  .pipe (concat "style.styl")
   .pipe stylus()
   .pipe gulp.dest paths.public
 
