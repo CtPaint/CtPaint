@@ -28,7 +28,18 @@ gulp.task 'coffee', ->
   .pipe gulp.dest paths.public
 
 gulp.task 'stylus', ->
-  gulp.src paths.css
+
+  stylSrc = (file) ->
+    "./src/css/" + file + ".styl"
+
+  stylFiles = [
+    stylSrc "font-families"
+    stylSrc "colors"
+    stylSrc "main"
+    stylSrc "*"
+  ]
+
+  gulp.src stylFiles
   .pipe (concat "style.styl")
   .pipe stylus()
   .pipe gulp.dest paths.public

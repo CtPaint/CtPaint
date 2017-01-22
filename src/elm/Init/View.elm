@@ -21,23 +21,26 @@ view state =
   [ div 
     [ classes [ "window-card", "init" ] ]
     [ div 
-      [ class "init-body" ]
-      [ p 
-        [ classes 
-          [ "point", "really-big", "centered-text", "vector" ] 
-        , style
-          [ ("margin-top", "70px") ]
-        ]
-        [ text "CtPaint" ]
-
-      , LoadingBar.render 0.6
-
-      , p
-        [ classes [ "point", "centered-text" ]
-        , style [ ("margin-top", "20px") ]
-        ]
-        [ text "60%" ]
-
-      ]
+      [ class "init-body" ] 
+      [ title ] 
     ]
   ]
+
+
+title : Html Msg
+title =
+  let
+    class_ =
+      classes
+      [ "point"
+      , "really-big"
+      , "centered-text"
+      , "vector" 
+      ]
+  
+    style_ =
+      style [ ("margin-top", "70px") ]
+  in
+    p 
+    [ class_, style_ ] 
+    [ text "CtPaint" ]
