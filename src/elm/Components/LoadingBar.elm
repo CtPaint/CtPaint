@@ -2,12 +2,9 @@ module Components.LoadingBar exposing (render)
 
 
 import Html            exposing (..)
-import Html.Attributes exposing (class, style, type_, value)
-import Html.Events     exposing (on, onInput, keyCode, onMouseDown)
-
+import Html.Attributes exposing (class)
 import Types.Message   exposing (Msg(..))
 
-import View.Util       exposing (classes)
 
 
 render : Float -> Html Msg
