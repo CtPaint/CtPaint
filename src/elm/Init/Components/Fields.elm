@@ -26,24 +26,24 @@ name n =
   |> row "name"
 
 
-width : String -> Html Msg
+width : Int -> Html Msg
 width w =
   input
   [ classes [ "field", "width-65" ]
   , placeholder "px"
-  , value w
+  , value (toString w)
   , onInput SetProjectWidth
   ] []
 
   |> row "width"
 
 
-height : String -> Html Msg
+height : Int -> Html Msg
 height h =
   input
   [ classes [ "field", "width-65" ]
   , placeholder "px"
-  , value h
+  , value (toString h)
   , onInput SetProjectHeight
   ] []
 

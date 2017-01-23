@@ -18,6 +18,8 @@ type Msg
   | SetProjectHeight String
   | SetProjectBackground InitColor
 
+  | StartApp
+
 type Error 
   = Error
 

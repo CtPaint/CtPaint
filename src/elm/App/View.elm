@@ -10,7 +10,7 @@ import Types.Message    exposing
   , MouseDir(..)
   , ToolBarMsg(..)
   )
-import Canvas        exposing (Canvas, toHtml)
+import Canvas        exposing (Canvas)
 import Toolbars.View exposing (verticalToolBar, horitonztalToolBar)
 import View.Util     as Style
 
@@ -29,23 +29,33 @@ view state =
 
 
 mainArea : State -> Html Msg
-mainArea state =
+mainArea {window, toolBars, canvas} =
   let 
-    window = 
-      state.window.size
+    toolBars_ = 
+      toolBars.size
 
-    toolBars = 
-      state.toolBars.size
+    window_ =
+      window.size
   in
     div
     [ class "main-work-area" 
     , style 
-      [ Style.width (window.width - toolBars.width)
-      , Style.height (window.height - toolBars.height)
-      , Style.left toolBars.width
+      [ Style.width (window_.width - toolBars_.width)
+      , Style.height (window_.height - toolBars_.height)
+      , Style.left toolBars_.width
       ]
     ]
-    []
+    [ Canvas.toHtml
+        [ class "main-canvas"
+        , style 
+          [ ("left", toString canvas.position.x)
+          , ("top", toString canvas.position.y)
+          ]
+        ]
+        canvas.get
+
+
+    ]
 
 
 

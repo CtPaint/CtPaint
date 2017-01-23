@@ -17,7 +17,7 @@ type alias UninitializedState =
   { window :
     { size : Maybe Size }
   , projectName : String
-  , canvasSize : MaybeSize
+  , canvasSize : Size
   , ready : Bool
   , initColor : InitColor
   }
@@ -40,10 +40,7 @@ type alias CanvasPack =
 type alias ToolBars =
   { size : Size }
 
-type alias MaybeSize =
-  { width : String
-  , height : String
-  }
+
 
 
 

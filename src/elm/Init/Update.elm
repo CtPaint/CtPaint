@@ -3,6 +3,7 @@ module Init.Update exposing (update)
 
 import Types.Model   exposing (Model(..), UninitializedState)
 import Types.Message exposing (Msg(..))
+import ParseInt      exposing (parseInt)
 import Init.Main as Init
 import String
 import Char
@@ -42,9 +43,9 @@ update message state =
       | ready =
           List.foldr (&&) True  
           [ state.window.size /= Nothing
-          , state.canvasSize.width /= ""
-          , state.canvasSize.height /= ""
           , state.projectName /= ""
+          , state.canvasSize.width > 0
+          , state.canvasSize.height > 0
           ]
       } ! []
 
@@ -58,40 +59,46 @@ update message state =
 
     SetProjectWidth str ->
 
-      if onlyDigits str then
-        let 
-          {canvasSize} = state 
-        in
-          update
-            CheckIfReady
-            { state 
-            | canvasSize = 
-              { canvasSize
-              | width = str
-              }
-            }   
-      else
-
-        Uninitialized state ! [] 
+      case parseInt str of
+        
+        Ok i ->
+          let 
+            {canvasSize} = state 
+          in
+            update
+              CheckIfReady
+              { state 
+              | canvasSize = 
+                { canvasSize
+                | width = i
+                }
+              }   
+        
+        Err _ ->
+        
+          Uninitialized state ! [] 
 
 
     SetProjectHeight str ->
 
-      if onlyDigits str then
-        let 
-          {canvasSize} = state 
-        in
-          update
-            CheckIfReady
-            { state 
-            | canvasSize = 
-              { canvasSize
-              | height = str
-              }
-            }   
-      else
-
-        Uninitialized state ! [] 
+      case parseInt str of
+        
+        Ok i ->
+          let 
+            {canvasSize} = state 
+          in
+            update
+              CheckIfReady
+              { state 
+              | canvasSize = 
+                { canvasSize
+                | height = i
+                }
+              }   
+        
+        Err _ ->
+        
+          Uninitialized state ! [] 
 
 
     SetProjectBackground color ->
@@ -100,6 +107,10 @@ update message state =
       { state
       | initColor = color
       } ! []
+
+
+    StartApp ->
+      Init.initialize state ! []
 
 
     _ -> 
