@@ -29,15 +29,19 @@ view state =
 
 
 mainArea : State -> Html Msg
-mainArea {toolBars, window} =
+mainArea state =
   let 
-    {size} = window 
+    window = 
+      state.window.size
+
+    toolBars = 
+      state.toolBars.size
   in
     div
     [ class "main-work-area" 
     , style 
-      [ Style.width (size.width - toolBars.width)
-      , Style.height (size.height - toolBars.height)
+      [ Style.width (window.width - toolBars.width)
+      , Style.height (window.height - toolBars.height)
       , Style.left toolBars.width
       ]
     ]

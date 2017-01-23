@@ -1,8 +1,9 @@
 module Types.Message exposing (..)
 
 
-import Mouse  exposing (Position)
-import Window exposing (Size)
+import Mouse       exposing (Position)
+import Window      exposing (Size)
+import Types.Basic exposing (InitColor)
 
 
 
@@ -10,6 +11,12 @@ type Msg
   = Mouse MouseMsg
   | GetWindowSize (Result Error Size)
   | OnWindowResize Size
+  | CheckIfReady
+
+  | SetProjectName String
+  | SetProjectWidth String
+  | SetProjectHeight String
+  | SetProjectBackground InitColor
 
 type Error 
   = Error

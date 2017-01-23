@@ -4,6 +4,9 @@ module Types.Model exposing (..)
 import Mouse         exposing (Position)
 import Window        exposing (Size)
 import Types.Message exposing (MouseSubs)
+import Types.Basic   exposing (InitColor)
+import Canvas        exposing (Canvas)
+
 
 
 type Model
@@ -13,6 +16,10 @@ type Model
 type alias UninitializedState =
   { window :
     { size : Maybe Size }
+  , projectName : String
+  , canvasSize : MaybeSize
+  , ready : Bool
+  , initColor : InitColor
   }
 
 type alias State =
@@ -20,11 +27,22 @@ type alias State =
   , window : 
     { size : Size }
   , mouseSubs : MouseSubs
+  , projectName : String
+  , canvas : CanvasPack
+  }
+
+
+type alias CanvasPack =
+  { get : Canvas
+  , position : Position
   }
 
 type alias ToolBars =
-  { width : Int
-  , height : Int
+  { size : Size }
+
+type alias MaybeSize =
+  { width : String
+  , height : String
   }
 
 

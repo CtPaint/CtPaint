@@ -1,11 +1,10 @@
 module App.Subscriptions exposing (subscriptions)
 
 
-import Types.Model exposing (Model(..), State)
+import Types.Model   exposing (Model(..), State)
 import Types.Message exposing (Msg(OnWindowResize, Mouse))
-
-import Mouse
-import Window 
+import Mouse         exposing (moves, ups, downs)
+import Window        exposing (resizes)
 
 
 
@@ -13,16 +12,13 @@ subscriptions : State -> Sub Msg
 subscriptions {mouseSubs} =
   Sub.batch
   [ mouseSubs.move 
-    >> Mouse 
-    |> Mouse.moves
+    >> Mouse |> moves
   
   , always mouseSubs.up 
-    >> Mouse 
-    |> Mouse.ups
+    >> Mouse |> ups
   
   , always mouseSubs.down 
-    >> Mouse 
-    |> Mouse.downs
+    >> Mouse |> downs
 
-  , Window.resizes OnWindowResize
+  , resizes OnWindowResize
   ]

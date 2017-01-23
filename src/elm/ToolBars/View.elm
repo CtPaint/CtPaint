@@ -17,22 +17,22 @@ import Types.Message    exposing
 
 
 verticalToolBar : ToolBars -> Html Msg
-verticalToolBar {width} =
+verticalToolBar {size} =
   div
   [ class "vertical-tool-bar" 
-  , style [ Style.width width ]
+  , style [ Style.width size.width ]
   ]
   []
 
 
 horitonztalToolBar : Size -> ToolBars -> Html Msg
-horitonztalToolBar size {width, height} =
+horitonztalToolBar window {size} =
   div
   [ class "horizontal-tool-bar" 
   , style
-    [ Style.height height
-    , Style.width (size.width - width)
-    , Style.left width
+    [ Style.height size.height
+    , Style.width (window.width - size.width)
+    , Style.left size.width
     ]
   ]
   [ div

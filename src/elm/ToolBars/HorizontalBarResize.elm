@@ -1,7 +1,8 @@
 module Toolbars.HorizontalBarResize exposing (update)
 
 
-import Types.Model exposing (State, Model(..))
+import Window        exposing (Size)
+import Types.Model   exposing (State, Model(..))
 import Types.Message exposing 
   ( Msg(..)
   , ToolBarMsg(..)
@@ -49,15 +50,19 @@ update direction state =
 
     Move position ->
       let 
-        { toolBars, window } = state 
+        window =
+          state.window.size
+
+        {toolBars} = state
       in
         App 
         { state
         | toolBars =
           { toolBars
-          | height = 
-              let { height } = window.size in
-              height - position.y
+          | size = 
+              Size 
+                toolBars.size.width 
+                (window.height - position.y)
           }
         } ! []
 
