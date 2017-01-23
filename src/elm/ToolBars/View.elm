@@ -16,8 +16,8 @@ import Types.Message    exposing
 
 
 
-verticalToolBar : ToolBars -> Html Msg
-verticalToolBar {size} =
+vertical : ToolBars -> Html Msg
+vertical {size} =
   div
   [ class "vertical-tool-bar" 
   , style [ Style.width size.width ]
@@ -25,8 +25,8 @@ verticalToolBar {size} =
   []
 
 
-horitonztalToolBar : Size -> ToolBars -> Html Msg
-horitonztalToolBar window {size} =
+horizontal : Size -> ToolBars -> Html Msg
+horizontal window {size} =
   div
   [ class "horizontal-tool-bar" 
   , style

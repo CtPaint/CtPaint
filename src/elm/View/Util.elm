@@ -24,3 +24,8 @@ width =
 left : Int -> (String, String)
 left = 
   toString >> (,) "left"
+
+
+top : Int -> (String, String)
+top =
+  toString >> (,) "top"

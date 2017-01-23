@@ -1,7 +1,7 @@
 import Html
 import Ports            exposing (..)
 import View             exposing (view)
-import Init.Main        exposing (initCmd, uninitializedApp)
+import Init.Main        exposing (initCmd, uninitializedApp, initDev)
 import Update           exposing (update)
 import Subscriptions    exposing (subscriptions)
 
@@ -10,7 +10,8 @@ import Subscriptions    exposing (subscriptions)
 
 main =
   Html.program
-  { init          = (uninitializedApp, initCmd) 
+  { init = (initDev, initCmd)
+  --{ init          = (uninitializedApp, initCmd) 
   , view          = view
   , update        = update
   , subscriptions = subscriptions

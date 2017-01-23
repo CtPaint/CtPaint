@@ -1,9 +1,10 @@
 module App.Update exposing (update)
 
 
-import Types.Model exposing (Model(..), State)
+import Types.Model   exposing (Model(..), State)
 import Types.Message exposing (Msg(..))
-import Mouse.Update as Mouse 
+import Mouse.Update  as Mouse 
+import Init.Main     as Init
 
 
 
@@ -15,6 +16,27 @@ update message state =
     Mouse mouseMessage ->
 
       Mouse.update mouseMessage state
+
+
+    GetWindowSize result ->
+
+      case Result.toMaybe result of
+
+        Nothing ->
+
+          (App state) ! [ Init.getWindowSize ]
+
+
+        Just size ->
+
+          App 
+          { state
+          | window =
+              let {window} = state in
+              { window
+              | size = size
+              }
+          } ! []
 
 
     OnWindowResize size ->
@@ -31,3 +53,5 @@ update message state =
     _ -> 
 
       App state ! []
+
+      

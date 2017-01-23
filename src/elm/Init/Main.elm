@@ -72,10 +72,7 @@ uninitializedApp =
   { window = 
     { size = Nothing } 
   , projectName = ""
-  , canvasSize = 
-    { width = 200
-    , height = 200
-    }
+  , canvasSize = Size 200 200
   , ready = False
   , initColor = White
   }
@@ -92,6 +89,17 @@ getWindowSize =
   Task.attempt 
     GetWindowSize 
     Window.size
+
+
+initDev : Model
+initDev =
+  initialize
+  { window = { size = Nothing } 
+  , projectName = "dev"
+  , canvasSize = Size 200 200
+  , ready = True
+  , initColor = White
+  }
 
 
 

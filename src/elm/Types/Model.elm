@@ -14,21 +14,19 @@ type Model
   | App State
 
 type alias UninitializedState =
-  { window :
-    { size : Maybe Size }
+  { window      : { size : Maybe Size }
   , projectName : String
-  , canvasSize : Size
-  , ready : Bool
-  , initColor : InitColor
+  , canvasSize  : Size
+  , ready       : Bool
+  , initColor   : InitColor
   }
 
 type alias State =
-  { toolBars : ToolBars 
-  , window : 
-    { size : Size }
-  , mouseSubs : MouseSubs
-  , projectName : String
-  , canvas : CanvasPack
+  { toolBars     : ToolBars 
+  , window       : { size : Size }
+  , mouseSubs    : MouseSubs
+  , projectName  : String
+  , canvas       : CanvasPack
   }
 
 
