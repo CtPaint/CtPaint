@@ -53,10 +53,8 @@ initialize state =
                 Color.rgba 0 0 0 0
 
         in
-          Canvas.initialize 
-            canvasSize.width 
-            canvasSize.height
-          |>Canvas.fill color
+          Canvas.initialize canvasSize
+          |> Canvas.fill color
 
     , position = 
         Position

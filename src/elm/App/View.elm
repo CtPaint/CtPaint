@@ -4,10 +4,11 @@ module App.View exposing (view)
 import Html             exposing (..)
 import Html.Attributes  exposing (style, class)
 import Types.Model      exposing (State)
-import Types.Message    exposing (Msg (..))
+import Types.Message    exposing (Msg(..))
 import Canvas           exposing (Canvas)
 import View.Util        as Style
 import Toolbars.View    as Toolbars
+
 
 
 view : State -> Html Msg

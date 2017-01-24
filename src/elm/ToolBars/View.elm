@@ -8,7 +8,7 @@ import View.Util        as Style
 import Types.Model      exposing (ToolBars)
 import Window           exposing (Size)
 import Types.Message    exposing 
-  ( Msg (..)
+  ( Msg(..)
   , MouseMsg(..)
   , MouseDir(..)
   , ToolBarMsg(..)

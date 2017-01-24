@@ -51,8 +51,6 @@ okayButton ready =
     ]
 
 
-
-
 title : Html Msg
 title =
   let
@@ -65,7 +63,8 @@ title =
       ]
   
     style_ =
-      style [ ("margin-top", "70px") ]
+      style 
+      [ ("margin-top", "70px") ]
   in
     p 
     [ class_, style_ ] 
