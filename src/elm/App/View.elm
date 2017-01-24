@@ -15,8 +15,7 @@ view : State -> Html Msg
 view state =
   div
   [ class "main" ]
-  [ Toolbars.vertical 
-      state.toolBars 
+  [ Toolbars.vertical state
   , Toolbars.horizontal 
       state.window.size
       state.toolBars 

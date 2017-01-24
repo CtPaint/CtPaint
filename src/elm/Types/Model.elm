@@ -5,6 +5,7 @@ import Mouse         exposing (Position)
 import Window        exposing (Size)
 import Types.Message exposing (MouseSubs)
 import Types.Basic   exposing (InitColor)
+import Types.Tools   exposing (ToolName, Tool)
 import Canvas        exposing (Canvas)
 
 
@@ -27,6 +28,7 @@ type alias State =
   , mouseSubs    : MouseSubs
   , projectName  : String
   , canvas       : CanvasPack
+  , currentTool  : Tool
   }
 
 

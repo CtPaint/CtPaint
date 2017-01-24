@@ -2,6 +2,7 @@ module App.Update exposing (update)
 
 
 import Types.Model   exposing (Model(..), State)
+import Types.Tools   exposing (ToolName(..), Tool, getTool)
 import Types.Message exposing (Msg(..))
 import Mouse.Update  as Mouse 
 import Init.Main     as Init
@@ -16,6 +17,14 @@ update message state =
     Mouse mouseMessage ->
 
       Mouse.update mouseMessage state
+
+
+    SetCurrentTool toolName ->
+
+      App
+      { state
+      | currentTool = getTool toolName
+      } ! []
 
 
     GetWindowSize result ->

@@ -11,6 +11,8 @@
     -webkit-font-smoothing none
   &:hover
     color pointColor
+  &.selected
+    color pointColor
 
 
 .tool-button-separator
@@ -35,7 +37,12 @@
   vertical-align middle
   line-height 22px
   margin-left 1px
-  &:hover
+  &:active
+    border-top 2px solid i3
+    border-left 2px solid i3
+    border-right 2px solid i1
+    border-bottom 2px solid i1
+  &.selected
     border-top 2px solid i3
     border-left 2px solid i3
     border-right 2px solid i1

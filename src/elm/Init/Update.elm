@@ -4,7 +4,8 @@ module Init.Update exposing (update)
 import Types.Model   exposing (Model(..), UninitializedState)
 import Types.Message exposing (Msg(..))
 import ParseInt      exposing (parseInt)
-import Init.Main as Init
+import Init.Main       as Init
+import Init.Initialize as Initialize
 import String
 import Char
 
@@ -110,7 +111,7 @@ update message state =
 
 
     StartApp ->
-      Init.initialize state ! []
+      Initialize.from state ! []
 
 
     _ -> 
