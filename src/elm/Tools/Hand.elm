@@ -1,13 +1,13 @@
 module Tools.Hand exposing (update)
 
 
-import Tools.Names   exposing (ToolName(..))
-import Mouse.Types   exposing (MouseDir(..))
-import Types.Model   exposing (State, Model(..), CanvasPack)
-import Types.Message exposing (Msg(..))
-import Mouse         exposing (Position)
-import Window        exposing (Size)
-import Canvas        exposing (getCanvasSize)
+import Tools.Names exposing (ToolName(..))
+import Mouse.Types exposing (MouseDir(..))
+import Model       exposing (State, Model(..), CanvasPack)
+import Message     exposing (Msg(..))
+import Mouse       exposing (Position)
+import Window      exposing (Size)
+import Canvas      exposing (getCanvasSize)
 
 
 
@@ -37,12 +37,15 @@ update dir state =
     Down position ->
       if withinCanvas state.canvas position then
         let
+
           x = position.x - state.canvas.position.x
           y = position.y - state.canvas.position.y
 
           {mouseMsgs} = state
           {subs} = mouseMsgs
+          
         in
+
           App
           { state
           | mouseMsgs = 
@@ -54,7 +57,9 @@ update dir state =
               }
             }
           } ! []
+
       else
+
         App state ! []
 
 

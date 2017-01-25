@@ -1,19 +1,19 @@
 module Toolbars.View exposing (..)
 
 
-import Html             exposing (..)
-import Html.Attributes  exposing (..)
-import Html.Events      exposing (onMouseDown, onClick)
-import View.Util        exposing (classes)
-import View.Util        as Style
-import Types.Model      exposing (ToolBars, State)
-import Types.Message    exposing (Msg(..))
-import Tools.Types      exposing (Tool)
-import Tools.Names      exposing (ToolName(..))
-import Tools.Tools      as Tools
-import Mouse.Types      exposing (MouseDir(..), noPosition)
-import ToolBars.Types   exposing (ToolbarMsg(..))
-import Window           exposing (Size)
+import Html            exposing (..)
+import Html.Attributes exposing (..)
+import Html.Events     exposing (onMouseDown, onClick)
+import View.Util       exposing (classes)
+import View.Util       as Style
+import Model           exposing (ToolBars, State)
+import Message         exposing (Msg(..))
+import Tools.Types     exposing (Tool)
+import Tools.Names     exposing (ToolName(..))
+import Tools.Tools     as Tools
+import Mouse.Types     exposing (MouseDir(..), noPosition)
+import ToolBars.Types  exposing (ToolbarMsg(..))
+import Window          exposing (Size)
 
 
 

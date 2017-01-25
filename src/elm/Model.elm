@@ -1,13 +1,13 @@
-module Types.Model exposing (..)
+module Model exposing (..)
 
 
-import Mouse         exposing (Position)
-import Window        exposing (Size)
-import Types.Message exposing (Msg(..), MousePack)
-import Init.Types    exposing (InitColor)
-import Tools.Types   exposing (Tool)
-import Tools.Names   exposing (ToolName)
-import Canvas        exposing (Canvas)
+import Mouse       exposing (Position)
+import Window      exposing (Size)
+import Message     exposing (Msg(..), MousePack)
+import Init.Types  exposing (InitColor)
+import Tools.Types exposing (Tool)
+import Tools.Names exposing (ToolName)
+import Canvas      exposing (Canvas)
 
 
 

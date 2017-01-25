@@ -1,9 +1,9 @@
 module Update exposing (update)
 
-import Types.Model   exposing (Model(..))
-import Types.Message exposing (Msg(..))
-import Init.Update   as Init
-import App.Update    as App
+import Model       exposing (Model(..))
+import Message     exposing (Msg(..))
+import Init.Update as Init
+import App.Update  as App
 
 
 

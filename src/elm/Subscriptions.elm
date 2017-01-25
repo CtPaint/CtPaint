@@ -1,8 +1,8 @@
 module Subscriptions exposing (subscriptions)
 
 
-import Types.Model       exposing (Model(..))
-import Types.Message     exposing (Msg(..))
+import Model   exposing (Model(..))
+import Message exposing (Msg(..))
 import App.Subscriptions as App
 
 

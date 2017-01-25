@@ -1,10 +1,10 @@
 module Init.Main exposing (..)
 
 
-import Types.Model   exposing (Model(..), UninitializedState)
-import Types.Message exposing (Msg(..))
-import Init.Types    exposing (InitColor(..))
-import Window        exposing (Size)
+import Model      exposing (Model(..), UninitializedState)
+import Message    exposing (Msg(..))
+import Init.Types exposing (InitColor(..))
+import Window     exposing (Size)
 import Task
 import Init.Initialize as Initialize
 

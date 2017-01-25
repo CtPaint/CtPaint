@@ -2,10 +2,10 @@ module Toolbars.Update exposing (update)
 
 
 import Toolbars.HorizontalBarResize as OnResize
-import Types.Model exposing (State, Model(..))
-import Types.Message exposing (Msg(..))
+import Model          exposing (State, Model(..))
+import Message        exposing (Msg(..))
 import ToolBars.Types exposing (ToolbarMsg(..))
-import Tools.Tools as Tools
+import Tools.Tools    as Tools
 
 
 

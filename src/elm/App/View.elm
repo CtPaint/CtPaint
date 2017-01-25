@@ -1,14 +1,14 @@
 module App.View exposing (view)
 
 
-import Html             exposing (..)
-import Html.Attributes  exposing (style, class)
-import Types.Model      exposing (State)
-import Types.Message    exposing (Msg(..))
-import Canvas           exposing (Canvas)
-import View.Util        as Style
-import Toolbars.View    as Toolbars
-import Mouse.Types      exposing (MouseDir(..))
+import Html            exposing (..)
+import Html.Attributes exposing (style, class)
+import Model           exposing (State)
+import Message         exposing (Msg(..))
+import Canvas          exposing (Canvas)
+import View.Util       as Style
+import Toolbars.View   as Toolbars
+import Mouse.Types     exposing (MouseDir(..))
 
 
 

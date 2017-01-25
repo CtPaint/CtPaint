@@ -1,8 +1,8 @@
 module Tools.Types exposing (Tool)
 
 
-import Mouse exposing (Position)
-import Types.Message exposing (Msg(..), MousePack)
+import Mouse       exposing (Position)
+import Message     exposing (Msg(..), MousePack)
 import Tools.Names exposing (ToolName)
 
 

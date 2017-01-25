@@ -4,7 +4,7 @@ module Init.Components.Fields exposing (..)
 import Html            exposing (Html, div, p, text, input)
 import Html.Attributes exposing (class, style, value, placeholder)
 import Html.Events     exposing (onInput)
-import Types.Message   exposing (Msg(..))
+import Message         exposing (Msg(..))
 import Init.Types      exposing (SetUpMsg(..))
 import View.Util       exposing (classes)
 

@@ -1,13 +1,13 @@
 module App.Update exposing (update)
 
 
-import Types.Model   exposing (Model(..), State)
-import Tools.Types   exposing (Tool)
-import Tools.Names   exposing (ToolName(..))
-import Types.Message exposing (Msg(..))
+import Model           exposing (Model(..), State)
+import Tools.Types     exposing (Tool)
+import Tools.Names     exposing (ToolName(..))
+import Message         exposing (Msg(..))
 import Toolbars.Update as Toolbar
-import Init.Main     as Init
-import Tools.Update as Tools
+import Init.Main       as Init
+import Tools.Update    as Tools
 
 
 

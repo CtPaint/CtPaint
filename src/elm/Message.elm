@@ -1,4 +1,4 @@
-module Types.Message exposing (..)
+module Message exposing (..)
 
 
 import Mouse          exposing (Position)

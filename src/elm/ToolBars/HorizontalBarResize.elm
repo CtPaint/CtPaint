@@ -1,11 +1,11 @@
 module Toolbars.HorizontalBarResize exposing (update)
 
 
-import Window        exposing (Size)
-import Types.Model   exposing (State, Model(..))
-import Types.Message exposing (Msg(..))
+import Window         exposing (Size)
+import Model          exposing (State, Model(..))
+import Message        exposing (Msg(..))
 import ToolBars.Types exposing (ToolbarMsg(..))
-import Mouse.Types   exposing (MouseDir(..), noPosition)
+import Mouse.Types    exposing (MouseDir(..), noPosition)
 
 
 

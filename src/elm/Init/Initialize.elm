@@ -1,19 +1,15 @@
 module Init.Initialize exposing (from)
 
 
-import Types.Model   exposing 
-  ( Model(..)
-  , UninitializedState
-  , State
-  )
-import Types.Message exposing (Msg(..))
-import Init.Types    exposing (InitColor(..))
-import Tools.Names   exposing (ToolName(..))
-import Tools.Tools   as Tools 
-import Window        exposing (Size)
-import Maybe         exposing (withDefault)
+import Model       exposing (Model(..), UninitializedState, State)
+import Message     exposing (Msg(..))
+import Init.Types  exposing (InitColor(..))
+import Tools.Names exposing (ToolName(..))
+import Tools.Tools as Tools 
+import Window      exposing (Size)
+import Maybe       exposing (withDefault)
+import Mouse       exposing (Position)
 import Canvas     
-import Mouse exposing (Position)
 import Color
 
 
@@ -26,7 +22,7 @@ from state =
 
     windowSize =
       state.window.size
-      |>withDefault (Size 800 800)
+      |>Maybe.withDefault (Size 800 800)
   in  
   App
   { toolBars = 

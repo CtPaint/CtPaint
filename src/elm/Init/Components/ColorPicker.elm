@@ -5,7 +5,7 @@ import Html            exposing (div, p, input, text, Attribute, Html)
 import Html.Attributes exposing (class, style, value, type_)
 import Html.Events     exposing (onMouseUp)
 import Init.Types      exposing (InitColor(..), SetUpMsg(..))
-import Types.Message   exposing (Msg(..))
+import Message         exposing (Msg(..))
 import View.Util       exposing (classes)
 
 

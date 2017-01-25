@@ -4,12 +4,12 @@ module Init.View exposing (view)
 import Html            exposing (..)
 import Html.Attributes exposing (class, style, value, type_)
 import Html.Events     exposing (onClick)
-import Types.Model     exposing (UninitializedState)
+import Model           exposing (UninitializedState)
 import Init.Types      exposing (InitColor(..), SetUpMsg(..))
-import Types.Message   exposing (Msg(..))
+import Message         exposing (Msg(..))
 import View.Util       exposing (classes)
 import Init.Components.ColorPicker as ColorPicker
-import Init.Components.Fields as Fields
+import Init.Components.Fields      as Fields
 
 
 

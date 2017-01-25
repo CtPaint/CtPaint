@@ -1,10 +1,10 @@
 module Init.SetUp exposing (update)
 
 
-import Types.Model   exposing (Model(..), UninitializedState)
-import Types.Message exposing (Msg(..))
-import Init.Types    exposing (SetUpMsg(..))
-import ParseInt      exposing (parseInt)
+import Model      exposing (Model(..), UninitializedState)
+import Message    exposing (Msg(..))
+import Init.Types exposing (SetUpMsg(..))
+import ParseInt   exposing (parseInt)
 import Init.Main       as Init
 import Init.Initialize as Initialize
 import String

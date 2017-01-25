@@ -1,8 +1,8 @@
 module Init.Update exposing (update)
 
 
-import Types.Model   exposing (Model(..), UninitializedState)
-import Types.Message exposing (Msg(..))
+import Model           exposing (Model(..), UninitializedState)
+import Message         exposing (Msg(..))
 import Init.Main       as Init
 import Init.Initialize as Initialize
 import Init.SetUp      as SetUp

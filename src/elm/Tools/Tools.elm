@@ -3,7 +3,7 @@ module Tools.Tools exposing (..)
 
 import Tools.Types exposing (Tool)
 import Tools.Names exposing (ToolName(..))
-import Types.Message exposing (Msg(..))
+import Message     exposing (Msg(..))
 
 
 hand : Tool
