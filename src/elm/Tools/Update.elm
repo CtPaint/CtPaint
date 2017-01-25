@@ -35,6 +35,7 @@ update name dir state =
               }
             } ! []
 
+
         Down position ->
           let
             x = position.x - state.canvas.position.x
@@ -54,6 +55,7 @@ update name dir state =
                 }
               }
             } ! []
+
 
         Move position ->
           let

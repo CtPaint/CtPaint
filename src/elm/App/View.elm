@@ -35,7 +35,7 @@ screen {window, toolBars, currentTool} =
       window.size
   in
     div
-    [ class "screen" 
+    [ Style.classes [ "screen", toString currentTool.name ] 
     , style 
       [ Style.width 
           (window_.width - toolBars_.width)
