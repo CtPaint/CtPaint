@@ -17,7 +17,6 @@ subscriptions model =
       Sub.none
 
 
-
     App state -> 
 
       App.subscriptions state

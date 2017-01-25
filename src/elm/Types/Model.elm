@@ -3,8 +3,8 @@ module Types.Model exposing (..)
 
 import Mouse         exposing (Position)
 import Window        exposing (Size)
-import Types.Message exposing (MouseSubs)
-import Types.Basic   exposing (InitColor)
+import Types.Message exposing (Msg(..), MousePack)
+import Init.Types    exposing (InitColor)
 import Types.Tools   exposing (ToolName, Tool)
 import Canvas        exposing (Canvas)
 
@@ -25,10 +25,13 @@ type alias UninitializedState =
 type alias State =
   { toolBars     : ToolBars 
   , window       : { size : Size }
-  , mouseSubs    : MouseSubs
   , projectName  : String
   , canvas       : CanvasPack
   , currentTool  : Tool
+  , mouseMsgs    :
+    { canvas : MousePack
+    , subs : MousePack
+    }
   }
 
 

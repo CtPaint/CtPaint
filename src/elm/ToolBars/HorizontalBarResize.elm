@@ -3,12 +3,9 @@ module Toolbars.HorizontalBarResize exposing (update)
 
 import Window        exposing (Size)
 import Types.Model   exposing (State, Model(..))
-import Types.Message exposing 
-  ( Msg(..)
-  , ToolBarMsg(..)
-  , MouseDir(..)
-  , MouseMsg(..)
-  )
+import Types.Message exposing (Msg(..))
+import ToolBars.Types exposing (ToolbarMsg(..))
+import Mouse.Types   exposing (MouseDir(..), noPosition)
 
 
 
@@ -17,33 +14,43 @@ update direction state =
   
   case direction of
 
-    Down ->
+    Down _ ->
       let 
-        { mouseSubs } = state 
+        { mouseMsgs } = state 
+        { subs } = mouseMsgs
 
-        moveMsg =
-          Move >> HorizontalBarResize >> ToolBar
+        mouseMsg =
+          HorizontalBarResize >> Toolbar
       in
         App 
         { state
-        | mouseSubs =
-          { mouseSubs
-          | move = moveMsg
-          , up = ToolBar (HorizontalBarResize Up)
+        | mouseMsgs =
+          { mouseMsgs
+          | subs =
+            { subs
+            | move = 
+                Move >> mouseMsg
+            , up = 
+                Up >> mouseMsg
+            }
           }
         } ! []
 
 
-    Up ->
+    Up _ ->
       let 
-        { mouseSubs } = state 
+        { mouseMsgs } = state 
+        { subs } = mouseMsgs
       in
         App 
         { state
-        | mouseSubs =
-          { mouseSubs
-          | move = always NoOp
-          , up = NoOp
+        | mouseMsgs =
+          { mouseMsgs
+          | subs =
+            { subs
+            | move = always NoOp
+            , up = always NoOp
+            }
           }
         } ! []
 

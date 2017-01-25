@@ -1,28 +1,21 @@
 module Init.Main exposing (..)
 
 
-import Types.Model   exposing 
-  ( Model(..)
-  , UninitializedState
-  )
+import Types.Model   exposing (Model(..), UninitializedState)
 import Types.Message exposing (Msg(..))
-import Types.Basic   exposing (InitColor(..))
+import Init.Types    exposing (InitColor(..))
 import Window        exposing (Size)
 import Task
 import Init.Initialize as Initialize
 
 
 
-
-
-
 uninitializedApp : Model
 uninitializedApp =
   Uninitialized
-  { window = 
-    { size = Nothing } 
+  { window      = { size = Nothing } 
   , projectName = ""
-  , canvasSize = Size 200 200
+  , canvasSize  = Size 200 200
   , ready = False
   , initColor = White
   }
@@ -30,15 +23,12 @@ uninitializedApp =
 
 initCmd : Cmd Msg
 initCmd =
-  Cmd.batch
-  [ getWindowSize ]
+  Cmd.batch [ getWindowSize ]
 
 
 getWindowSize : Cmd Msg
 getWindowSize = 
-  Task.attempt 
-    GetWindowSize 
-    Window.size
+  Task.attempt GetWindowSize Window.size
 
 
 initDev : Model

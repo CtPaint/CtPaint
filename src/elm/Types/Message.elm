@@ -1,60 +1,44 @@
 module Types.Message exposing (..)
 
 
-import Mouse       exposing (Position)
-import Window      exposing (Size)
-import Types.Basic exposing (InitColor)
-import Types.Tools exposing (ToolName(..), Tools, Tool)
+import Mouse          exposing (Position)
+import Window         exposing (Size)
+import Init.Types     exposing (InitColor)
+import ToolBars.Types exposing (ToolbarMsg)
+import Types.Tools    exposing (ToolName(..))
+
 
 
 
 type Msg 
-  = Mouse MouseMsg
-  | MainCanvas (Tools -> Tool) MouseDir
+  = OnWindowResize Size
+  | Toolbar ToolbarMsg
+
 
   | GetWindowSize (Result Error Size)
-  | OnWindowResize Size
   | CheckIfReady
-
   | SetProjectName String
   | SetProjectWidth String
   | SetProjectHeight String
   | SetProjectBackground InitColor
-
+  | SetCurrentTool ToolName
   | StartApp
 
-  | SetCurrentTool ToolName
+  | NoOp
+
 
 type Error 
   = Error
 
 
-type MouseMsg
-  = ToolBar ToolBarMsg
-  | WorkArea WorkAreaMsg
-  | NoOp 
-
-
-type ToolBarMsg
-  = HorizontalBarResize MouseDir
-
-type WorkAreaMsg
-  = Pencil MouseDir
-
-
-
-type MouseDir
-  = Down
-  | Up
-  | Move Position
-
-
-
-type alias MouseSubs =
-  { down : MouseMsg
-  , up : MouseMsg
-  , move : Position -> MouseMsg
+type alias MousePack =
+  { down : Position -> Msg 
+  , up : Position -> Msg
+  , move : Position -> Msg
   }
+
+
+
 
 
 

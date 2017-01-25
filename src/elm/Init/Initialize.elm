@@ -6,11 +6,8 @@ import Types.Model   exposing
   , UninitializedState
   , State
   )
-import Types.Message exposing 
-  ( Msg(..)
-  , MouseMsg(..)
-  )
-import Types.Basic   exposing (InitColor(..))
+import Types.Message exposing (Msg(..))
+import Init.Types    exposing (InitColor(..))
 import Types.Tools   exposing (ToolName(..), Tool, getTool)
 import Window        exposing (Size)
 import Maybe         exposing (withDefault)
@@ -35,11 +32,18 @@ from state =
     { size = Size 29 58 }   
   , window =    
     { size = windowSize }   
-  , mouseSubs =   
-    { down = NoOp   
-    , up   = NoOp   
-    , move = always NoOp    
-    } 
+  , mouseMsgs =
+    { canvas = 
+      { down = always NoOp
+      , up   = always NoOp
+      , move = always NoOp
+      }
+    , subs =
+      { down = always NoOp
+      , up   = always NoOp
+      , move = always NoOp
+      }
+    }
   , projectName = projectName
 
   , canvas =

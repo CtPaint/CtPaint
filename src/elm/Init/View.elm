@@ -2,10 +2,10 @@ module Init.View exposing (view)
 
 
 import Html            exposing (..)
-import Html.Attributes exposing (class, style, value, type_, placeholder)
-import Html.Events     exposing (onMouseUp)
+import Html.Attributes exposing (class, style, value, type_)
+import Html.Events     exposing (onClick)
 import Types.Model     exposing (UninitializedState)
-import Types.Basic     exposing (InitColor(..))
+import Init.Types      exposing (InitColor(..))
 import Types.Message   exposing (Msg(..))
 import View.Util       exposing (classes)
 import Init.Components.ColorPicker as ColorPicker
@@ -45,7 +45,7 @@ okayButton ready =
       [ class_
       , value "Okay"
       , type_ "submit"
-      , onMouseUp StartApp
+      , onClick StartApp
       ]
       []
     ]

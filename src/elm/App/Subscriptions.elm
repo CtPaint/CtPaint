@@ -2,23 +2,18 @@ module App.Subscriptions exposing (subscriptions)
 
 
 import Types.Model   exposing (Model(..), State)
-import Types.Message exposing (Msg(OnWindowResize, Mouse))
-import Mouse         exposing (moves, ups, downs)
+import Types.Message exposing (Msg(OnWindowResize))
+import Mouse
 import Window        exposing (resizes)
 
 
 
 subscriptions : State -> Sub Msg
-subscriptions {mouseSubs} =
+subscriptions state =
+  let {subs} = state.mouseMsgs in
   Sub.batch
-  [ mouseSubs.move 
-    >> Mouse |> moves
-  
-  , always mouseSubs.up 
-    >> Mouse |> ups
-  
-  , always mouseSubs.down 
-    >> Mouse |> downs
-
+  [ Mouse.moves subs.move 
+  , Mouse.ups subs.up
+  , Mouse.downs subs.down
   , resizes OnWindowResize
   ]

@@ -2,12 +2,7 @@ module Init.Components.Fields exposing (..)
 
 
 import Html            exposing (Html, div, p, text, input)
-import Html.Attributes exposing 
-  ( class
-  , style
-  , value
-  , placeholder
-  )
+import Html.Attributes exposing (class, style, value, placeholder)
 import Html.Events     exposing (onInput)
 import Types.Message   exposing (Msg(..))
 import View.Util       exposing (classes)
@@ -65,3 +60,5 @@ row name input =
     [ class "form-input" ]
     [ input ]
   ]
+
+

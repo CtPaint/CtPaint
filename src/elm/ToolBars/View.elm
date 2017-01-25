@@ -8,15 +8,13 @@ import View.Util        exposing (classes)
 import View.Util        as Style
 import Types.Model      exposing (ToolBars, State)
 import Types.Tools      exposing (ToolName, Tool)
+import Mouse.Types      exposing (MouseDir(..), noPosition)
+import ToolBars.Types   exposing (ToolbarMsg(..))
 import Window           exposing (Size)
-import Types.Message    exposing 
-  ( Msg(..)
-  , MouseMsg(..)
-  , MouseDir(..)
-  , ToolBarMsg(..)
-  )
-import Types.Tools exposing (tools, Tool)
-import Dict        exposing (values)
+import Types.Message    exposing (Msg(..))
+import Types.Tools      exposing (tools, Tool)
+import Dict             exposing (values)
+import Mouse            exposing (Position)
 
 
 
@@ -42,9 +40,9 @@ horizontal window {size} =
   ]
   [ div
     [ class "horizontal-tool-bar-edge" 
-    , HorizontalBarResize Down
-      |>ToolBar
-      |>Mouse
+    , Down noPosition
+      |>HorizontalBarResize
+      |>Toolbar
       |>onMouseDown
     ]
     []
@@ -54,7 +52,7 @@ horizontal window {size} =
 toolButton : ToolName -> Tool -> Html Msg
 toolButton currentTool {icon, name} =
   let
-  
+
     selected =
       if currentTool == name then
         "selected"

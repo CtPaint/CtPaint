@@ -9,13 +9,12 @@ import App.Update    as App
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update message model =
-  
+
   case model of
   
     Uninitialized state ->
   
       Init.update message state 
-
 
 
     App state ->
