@@ -43,6 +43,17 @@ update message state =
           |> SetUp.update CheckIfReady
 
 
+    OnWindowResize size ->
+      let 
+        {window} = state
+      in
+        Uninitialized
+        { state
+        | window = 
+          { size = Just size }
+        } ! []
+
+
     _ -> 
       
       Uninitialized state ! []
