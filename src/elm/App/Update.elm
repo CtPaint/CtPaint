@@ -8,6 +8,7 @@ import Message         exposing (Msg(..))
 import Toolbars.Update as Toolbar
 import Init.Main       as Init
 import Tools.Update    as Tools
+import Draw.Update     as Draw
 
 
 
@@ -16,10 +17,28 @@ update message state =
   
   case message of
 
+    Draw drawMessage ->
+
+      Draw.update drawMessage state
+
+
+    Tick _ ->
+      let 
+        {canvas, pendingDraws} = state
+      in
+        List.foldr
+          onTick
+          (App state ! [])
+          state.pendingDraws
+
+
     Tool name dir ->
+
       Tools.update name dir state
 
+
     Toolbar msg ->
+
       Toolbar.update msg state
 
 
@@ -58,5 +77,15 @@ update message state =
     _ -> 
 
       App state ! []
+
+
+onTick : Msg -> (Model, Cmd Msg) -> (Model, Cmd Msg)
+onTick msg (model, cmd) =
+  case model of
+    App state ->
+      update msg state 
+
+    _ ->
+      (model, cmd)
 
       

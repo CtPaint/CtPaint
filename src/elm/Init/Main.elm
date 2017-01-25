@@ -38,7 +38,7 @@ initDev =
   , projectName = "dev"
   , canvasSize = Size 200 200
   , ready = True
-  , initColor = White
+  , initColor = Black
   }
 
 

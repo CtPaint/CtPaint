@@ -69,5 +69,7 @@ from state =
     }
 
   , tool = Tools.hand
+
+  , pendingDraws = []
   
   }   

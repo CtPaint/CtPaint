@@ -6,8 +6,9 @@ import Window         exposing (Size)
 import Init.Types     exposing (SetUpMsg)
 import ToolBars.Types exposing (ToolbarMsg)
 import Tools.Names    exposing (ToolName)
-import Mouse.Types    exposing (MouseDir(..))
-
+import Draw.Types     exposing (DrawMsg)
+import Mouse.Types    exposing (MouseDir)
+import Time           exposing (Time)
 
 
 
@@ -17,6 +18,8 @@ type Msg
   | Toolbar ToolbarMsg
   | Tool ToolName MouseDir
   | SetUp SetUpMsg
+  | Draw DrawMsg
+  | Tick Time
   | GetWindowSize (Result Error Size)
   | NoOp
 

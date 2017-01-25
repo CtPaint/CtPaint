@@ -8,6 +8,7 @@ import Message     exposing (Msg(..))
 import Mouse       exposing (Position)
 import Window      exposing (Size)
 import Canvas      exposing (getCanvasSize)
+import Tools.Util  exposing (withinCanvas)
 
 
 
@@ -43,7 +44,7 @@ update dir state =
 
           {mouseMsgs} = state
           {subs} = mouseMsgs
-          
+
         in
 
           App
@@ -75,23 +76,6 @@ update dir state =
           }
         } ! []
 
-
-
-
-withinCanvas : CanvasPack -> Position -> Bool
-withinCanvas {get, position} {x, y} =
-  let
-
-    {width, height} = getCanvasSize get
-
-    withinX = 
-      (position.x < x) && (x < (position.x + width))
-
-    withinY =
-      (position.y < y) && (y < (position.y + height))
-
-  in
-    withinY && withinX
 
 
 onMove : Size -> Position -> Position -> Msg

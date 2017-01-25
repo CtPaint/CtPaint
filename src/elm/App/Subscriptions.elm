@@ -2,10 +2,10 @@ module App.Subscriptions exposing (subscriptions)
 
 
 import Model   exposing (Model(..), State)
-import Message exposing (Msg(OnWindowResize))
+import Message exposing (Msg(OnWindowResize, Tick))
 import Mouse
 import Window  exposing (resizes)
-
+import AnimationFrame exposing (diffs)
 
 
 subscriptions : State -> Sub Msg
@@ -18,4 +18,5 @@ subscriptions state =
     , Mouse.ups subs.up
     , Mouse.downs subs.down
     , resizes OnWindowResize
+    , diffs Tick
     ]

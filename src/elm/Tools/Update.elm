@@ -6,6 +6,7 @@ import Mouse.Types exposing (MouseDir(..))
 import Model       exposing (State, Model(..))
 import Message     exposing (Msg(..))
 import Tools.Hand  as Hand
+import Tools.Pencil as Pencil
 
 
 
@@ -17,5 +18,10 @@ update name dir state =
     Hand ->
 
       Hand.update dir state
+
+
+    Pencil ->
+
+      Pencil.update dir state
 
 
