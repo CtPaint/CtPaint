@@ -9,8 +9,4 @@ import Tools.Names exposing (ToolName)
 type alias Tool =
   { name : ToolName
   , icon : String
-  , mouseMsgs :
-    { canvas : MousePack
-    , subs : MousePack
-    }
   }

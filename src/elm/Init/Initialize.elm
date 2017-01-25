@@ -70,6 +70,8 @@ from state =
           ((windowSize.width - canvasSize.width) // 2)
           ((windowSize.height - canvasSize.height) // 2)
 
-    }  
+    }
+
   , tool = Tools.hand
+  
   }   
