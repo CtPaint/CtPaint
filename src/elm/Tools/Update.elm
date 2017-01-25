@@ -3,10 +3,11 @@ module Tools.Update exposing (..)
 
 import Tools.Names exposing (ToolName(..))
 import Mouse.Types exposing (MouseDir(..))
-import Types.Model exposing (State, Model(..))
+import Types.Model exposing (State, Model(..), CanvasPack)
 import Types.Message exposing (Msg(..))
 import Mouse exposing (Position)
 import Window exposing (Size)
+import Canvas exposing (getCanvasSize)
 
 
 
@@ -37,24 +38,27 @@ update name dir state =
 
 
         Down position ->
-          let
-            x = position.x - state.canvas.position.x
-            y = position.y - state.canvas.position.y
+          if withinCanvas state.canvas position then
+            let
+              x = position.x - state.canvas.position.x
+              y = position.y - state.canvas.position.y
 
-            {mouseMsgs} = state
-            {subs} = mouseMsgs
-          in
-            App
-            { state
-            | mouseMsgs = 
-              { mouseMsgs 
-              | subs =
-                { subs
-                | move = onMove state.toolBars.size (Position x y)
-                , up = Up >> Tool Hand
+              {mouseMsgs} = state
+              {subs} = mouseMsgs
+            in
+              App
+              { state
+              | mouseMsgs = 
+                { mouseMsgs 
+                | subs =
+                  { subs
+                  | move = onMove state.toolBars.size (Position x y)
+                  , up = Up >> Tool Hand
+                  }
                 }
-              }
-            } ! []
+              } ! []
+          else
+            App state ! []
 
 
         Move position ->
@@ -69,6 +73,21 @@ update name dir state =
               }
             } ! []
 
+
+withinCanvas : CanvasPack -> Position -> Bool
+withinCanvas {get, position} {x, y} =
+  let
+
+    {width, height} = getCanvasSize get
+
+    withinX = 
+      (position.x < x) && (x < (position.x + width))
+
+    withinY =
+      (position.y < y) && (y < (position.y + height))
+
+  in
+    withinY && withinX
 
 
 onMove : Size -> Position -> Position -> Msg
