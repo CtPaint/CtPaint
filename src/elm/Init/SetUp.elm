@@ -7,8 +7,6 @@ import Init.Types exposing (SetUpMsg(..))
 import ParseInt   exposing (parseInt)
 import Init.Main       as Init
 import Init.Initialize as Initialize
-import String
-import Char
 
 
 
@@ -95,13 +93,6 @@ update message state =
       Initialize.from state ! []
 
 
-
-
-onlyDigits : String -> Bool
-onlyDigits =
-  String.foldr 
-    ((&&) << Char.isDigit)
-    True
 
 
 
