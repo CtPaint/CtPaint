@@ -28,7 +28,7 @@ type alias State =
   , window       : { size : Size }
   , projectName  : String
   , canvas       : CanvasPack
-  , currentTool  : Tool
+  , tool         : Tool
   , mouseMsgs    :
     { canvas : MousePack
     , subs : MousePack

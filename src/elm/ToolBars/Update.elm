@@ -23,6 +23,6 @@ update message state =
 
       App
       { state
-      | currentTool = Tools.get name
+      | tool = Tools.get name
       } ! []
 

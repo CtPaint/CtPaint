@@ -26,7 +26,7 @@ view state =
 
 
 screen : State -> Html Msg
-screen {window, toolBars, currentTool} =
+screen {window, toolBars, tool} =
   let 
     toolBars_ = 
       toolBars.size
@@ -35,7 +35,7 @@ screen {window, toolBars, currentTool} =
       window.size
   in
     div
-    [ Style.classes [ "screen", toString currentTool.name ] 
+    [ Style.classes [ "screen", toString tool.name ] 
     , style 
       [ Style.width 
           (window_.width - toolBars_.width)
@@ -43,7 +43,7 @@ screen {window, toolBars, currentTool} =
           (window_.height - toolBars_.height)
       , Style.left toolBars_.width
       ]
-    , Canvas.onMouseDown (Tool currentTool.name << Down)
+    , Canvas.onMouseDown (Tool tool.name << Down)
     ] 
     []
 

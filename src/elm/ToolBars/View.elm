@@ -18,12 +18,12 @@ import Window           exposing (Size)
 
 
 vertical : State -> Html Msg
-vertical {toolBars, currentTool} =
+vertical {toolBars, tool} =
   div
   [ class "vertical-tool-bar" 
   , style [ Style.width toolBars.size.width ]
   ]
-  (List.map (toolButton currentTool.name) Tools.all)
+  (List.map (toolButton tool.name) Tools.all)
   
 
 
