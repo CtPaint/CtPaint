@@ -32,15 +32,16 @@ update message state =
   
 
         Just size ->
-
-          { state
-          | window = 
-              let {window} = state in
-              { window 
-              | size = Just size
-              }
-          }
-          |> SetUp.update CheckIfReady
+          
+          SetUp.update 
+            CheckIfReady
+            { state
+            | window = 
+                let {window} = state in
+                { window 
+                | size = Just size
+                }
+            }
 
 
     OnWindowResize size ->

@@ -6,6 +6,7 @@ import Window         exposing (Size)
 import Init.Types     exposing (SetUpMsg)
 import ToolBars.Types exposing (ToolbarMsg)
 import Tools.Names    exposing (ToolName)
+import Mouse.Types    exposing (MouseDir(..))
 
 
 
@@ -14,7 +15,7 @@ import Tools.Names    exposing (ToolName)
 type Msg 
   = OnWindowResize Size
   | Toolbar ToolbarMsg
-  | Tool ToolName 
+  | Tool ToolName MouseDir
   | SetUp SetUpMsg
   | GetWindowSize (Result Error Size)
   | NoOp

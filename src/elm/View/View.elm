@@ -4,7 +4,6 @@ module View exposing (view)
 import Html             exposing (..)
 import Init.View        as Init
 import App.View         as App
-
 import Types.Model      exposing (Model(..))
 import Types.Message    exposing (Msg(..))
 

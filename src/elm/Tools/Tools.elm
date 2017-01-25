@@ -6,9 +6,9 @@ import Tools.Names exposing (ToolName(..))
 import Types.Message exposing (Msg(..))
 
 
-move : Tool
-move = 
-  { name = Move
+hand : Tool
+hand = 
+  { name = Hand
   , icon = "\xEA0A"
   , mouseMsgs =
     { canvas =
@@ -27,10 +27,16 @@ move =
 
 all : List Tool
 all =
-  [ move ]
+  [ hand ]
+
 
 get : ToolName -> Tool
 get name =
+
   case name of
 
-    Move -> move
+    Hand -> hand
+
+
+
+

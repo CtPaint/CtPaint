@@ -8,6 +8,7 @@ import Types.Message    exposing (Msg(..))
 import Canvas           exposing (Canvas)
 import View.Util        as Style
 import Toolbars.View    as Toolbars
+import Mouse.Types      exposing (MouseDir(..))
 
 
 
@@ -20,7 +21,31 @@ view state =
       state.window.size
       state.toolBars 
   , mainArea state
+  , screen state
   ]
+
+
+screen : State -> Html Msg
+screen {window, toolBars, currentTool} =
+  let 
+    toolBars_ = 
+      toolBars.size
+
+    window_ =
+      window.size
+  in
+    div
+    [ class "screen" 
+    , style 
+      [ Style.width 
+          (window_.width - toolBars_.width)
+      , Style.height 
+          (window_.height - toolBars_.height)
+      , Style.left toolBars_.width
+      ]
+    , Canvas.onMouseDown (Tool currentTool.name << Down)
+    ] 
+    []
 
 
 mainArea : State -> Html Msg

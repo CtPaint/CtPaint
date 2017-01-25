@@ -71,5 +71,5 @@ from state =
           ((windowSize.height - canvasSize.height) // 2)
 
     }  
-  , currentTool = Tools.move
+  , currentTool = Tools.hand
   }   
