@@ -2,7 +2,9 @@ module App.Update exposing (update)
 
 
 import Types.Model   exposing (Model(..), State)
-import Types.Tools   exposing (ToolName(..), Tool, getTool)
+import Tools.Types   exposing (Tool)
+import Tools.Names   exposing (ToolName(..))
+import Tools.Tools   as Tools
 import Types.Message exposing (Msg(..))
 import Toolbars.Update as Toolbar
 import Init.Main     as Init
@@ -13,14 +15,6 @@ update : Msg -> State -> (Model, Cmd Msg)
 update message state =
   
   case message of
-    
-    SetCurrentTool toolName ->
-
-      App
-      { state
-      | currentTool = getTool toolName
-      } ! []
-
 
     Toolbar msg ->
       Toolbar.update msg state

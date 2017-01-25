@@ -5,6 +5,7 @@ import Html            exposing (Html, div, p, text, input)
 import Html.Attributes exposing (class, style, value, placeholder)
 import Html.Events     exposing (onInput)
 import Types.Message   exposing (Msg(..))
+import Init.Types      exposing (SetUpMsg(..))
 import View.Util       exposing (classes)
 
 
@@ -15,7 +16,7 @@ name n =
   [ classes [ "field", "width-200" ]
   , placeholder "project name"
   , value n
-  , onInput SetProjectName
+  , onInput (SetUp << SetProjectName)
   ] []
 
   |> row "name"
@@ -27,7 +28,7 @@ width w =
   [ classes [ "field", "width-65" ]
   , placeholder "px"
   , value (toString w)
-  , onInput SetProjectWidth
+  , onInput (SetUp << SetProjectWidth)
   ] []
 
   |> row "width"
@@ -39,7 +40,7 @@ height h =
   [ classes [ "field", "width-65" ]
   , placeholder "px"
   , value (toString h)
-  , onInput SetProjectHeight
+  , onInput (SetUp << SetProjectHeight)
   ] []
 
   |> row "height"

@@ -8,7 +8,8 @@ import Types.Model   exposing
   )
 import Types.Message exposing (Msg(..))
 import Init.Types    exposing (InitColor(..))
-import Types.Tools   exposing (ToolName(..), Tool, getTool)
+import Tools.Names   exposing (ToolName(..))
+import Tools.Tools   as Tools 
 import Window        exposing (Size)
 import Maybe         exposing (withDefault)
 import Canvas     
@@ -70,5 +71,5 @@ from state =
           ((windowSize.height - canvasSize.height) // 2)
 
     }  
-  , currentTool = getTool Select
+  , currentTool = Tools.move
   }   

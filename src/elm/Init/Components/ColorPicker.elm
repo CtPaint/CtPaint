@@ -4,7 +4,7 @@ module Init.Components.ColorPicker exposing (render)
 import Html            exposing (div, p, input, text, Attribute, Html)
 import Html.Attributes exposing (class, style, value, type_)
 import Html.Events     exposing (onMouseUp)
-import Init.Types      exposing (InitColor(..))
+import Init.Types      exposing (InitColor(..), SetUpMsg(..))
 import Types.Message   exposing (Msg(..))
 import View.Util       exposing (classes)
 
@@ -53,7 +53,7 @@ colorSelection c0 c1 s =
 
 setBackground : InitColor -> Attribute Msg
 setBackground =
-  onMouseUp << SetProjectBackground
+  onMouseUp << SetUp << SetProjectBackground
 
 
 selectionClass : InitColor -> InitColor -> Attribute Msg

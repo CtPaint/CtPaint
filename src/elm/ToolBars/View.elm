@@ -7,14 +7,13 @@ import Html.Events      exposing (onMouseDown, onClick)
 import View.Util        exposing (classes)
 import View.Util        as Style
 import Types.Model      exposing (ToolBars, State)
-import Types.Tools      exposing (ToolName, Tool)
+import Types.Message    exposing (Msg(..))
+import Tools.Types      exposing (Tool)
+import Tools.Names      exposing (ToolName(..))
+import Tools.Tools      as Tools
 import Mouse.Types      exposing (MouseDir(..), noPosition)
 import ToolBars.Types   exposing (ToolbarMsg(..))
 import Window           exposing (Size)
-import Types.Message    exposing (Msg(..))
-import Types.Tools      exposing (tools, Tool)
-import Dict             exposing (values)
-import Mouse            exposing (Position)
 
 
 
@@ -24,7 +23,7 @@ vertical {toolBars, currentTool} =
   [ class "vertical-tool-bar" 
   , style [ Style.width toolBars.size.width ]
   ]
-  (List.map (toolButton currentTool.name) tools)
+  (List.map (toolButton currentTool.name) Tools.all)
   
 
 
@@ -50,7 +49,7 @@ horizontal window {size} =
 
 
 toolButton : ToolName -> Tool -> Html Msg
-toolButton currentTool {icon, name} =
+toolButton currentTool {name, icon} =
   let
 
     selected =
@@ -61,7 +60,7 @@ toolButton currentTool {icon, name} =
   in
     div
     [ classes [ "tool-button", selected ] 
-    , onClick (SetCurrentTool name)
+    , onClick (Toolbar <| SetCurrentTool name)
     ]
     [ p 
       [ classes [ "icon", selected ] ]
