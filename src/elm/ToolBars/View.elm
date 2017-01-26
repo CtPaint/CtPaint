@@ -10,9 +10,8 @@ import Message         exposing (Msg(..))
 import Tools.Tools     as Tools
 import Mouse.Types     exposing (MouseDir(..), noPosition)
 import ToolBars.Types  exposing (ToolbarMsg(..))
-import Tools.Types     exposing (Tool)
 import Window          exposing (Size)
-import Tools.View      exposing (toolButton)
+import Tools.Components.Button as Button
 
 
 vertical : State -> Html Msg
@@ -21,7 +20,7 @@ vertical {toolBars, tool} =
   [ class "vertical-tool-bar" 
   , style [ Style.width toolBars.size.width ]
   ]
-  (List.map (toolButton tool.name) Tools.all)
+  (List.map (Button.render tool.name) Tools.all)
   
 
 

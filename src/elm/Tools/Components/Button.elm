@@ -1,4 +1,4 @@
-module Tools.View exposing (toolButton)
+module Tools.Components.Button exposing (render)
 
 
 import Html            exposing (Html, div, p, text)
@@ -13,8 +13,8 @@ import ToolBars.Types  exposing (ToolbarMsg(..))
 
 
 
-toolButton : ToolName -> Tool -> Html Msg
-toolButton currentTool {name, icon} =
+render : ToolName -> Tool -> Html Msg
+render currentTool {name, icon} =
   let
 
     selected =
