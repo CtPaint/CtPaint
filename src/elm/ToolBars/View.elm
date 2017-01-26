@@ -4,17 +4,15 @@ module Toolbars.View exposing (..)
 import Html            exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events     exposing (onMouseDown, onClick)
-import View.Util       exposing (classes)
 import View.Util       as Style
 import Model           exposing (ToolBars, State)
 import Message         exposing (Msg(..))
-import Tools.Types     exposing (Tool)
-import Tools.Names     exposing (ToolName(..))
 import Tools.Tools     as Tools
 import Mouse.Types     exposing (MouseDir(..), noPosition)
 import ToolBars.Types  exposing (ToolbarMsg(..))
+import Tools.Types     exposing (Tool)
 import Window          exposing (Size)
-
+import Tools.View      exposing (toolButton)
 
 
 vertical : State -> Html Msg
@@ -46,27 +44,6 @@ horizontal window {size} =
     ]
     []
   ]
-
-
-toolButton : ToolName -> Tool -> Html Msg
-toolButton currentTool {name, icon} =
-  let
-
-    selected =
-      if currentTool == name then
-        "selected"
-      else
-        ""
-  in
-    div
-    [ classes [ "tool-button", selected ] 
-    , onClick (Toolbar <| SetCurrentTool name)
-    ]
-    [ p 
-      [ classes [ "icon", selected ] ]
-      [ text icon ]
-    ]
-
 
 
 

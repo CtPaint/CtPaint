@@ -1,11 +1,12 @@
 module Keyboard.Update exposing (update)
 
 
-import Keyboard exposing (KeyCode)
+import Keyboard       exposing (KeyCode)
 import Keyboard.Types exposing (KeyboardDir(..))
-import Model exposing (State, Model(..))
-import Message exposing (Msg(..))
-import Tools.Tools as Tools 
+import Model          exposing (State, Model(..))
+import Message        exposing (Msg(..))
+import Tools.Tools    as Tools 
+import Tools.Types    exposing (Tool)
 import Char
 
 
@@ -16,36 +17,13 @@ update code dir state =
   
     'P' ->
 
-      case dir of
-
-        Down -> 
-
-          App state ! []
-
-
-        Up ->
-
-          App
-          { state
-          | tool = Tools.pencil
-          } ! []
+      setTool dir Tools.pencil state
 
 
     'H' ->
 
-      case dir of
+      setTool dir Tools.hand state
 
-        Down -> 
-
-          App state ! []
-
-
-        Up ->
-
-          App
-          { state
-          | tool = Tools.hand
-          } ! []
 
 
     _ -> 
@@ -54,6 +32,21 @@ update code dir state =
 
 
 
+setTool : KeyboardDir -> Tool -> State -> (Model, Cmd Msg)
+setTool dir tool state =
 
+  case dir of
+
+    Down -> 
+
+      App state ! []
+
+
+    Up ->
+
+      App
+      { state
+      | tool = tool
+      } ! []
 
 

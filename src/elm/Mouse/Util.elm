@@ -14,9 +14,14 @@ resetMousePacks state =
     }
   }
 
+
 blankPack : MousePack
 blankPack = 
   { down = Nothing
   , up = Nothing
   , move = Nothing
   }
+
+
+
+  
