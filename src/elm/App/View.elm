@@ -27,56 +27,42 @@ view state =
 
 screen : State -> Html Msg
 screen {window, toolBars, tool} =
-  let 
-    toolBars_ = 
-      toolBars.size
-
-    window_ =
-      window.size
-  in
-    div
-    [ Style.classes [ "screen", toString tool.name ] 
-    , style 
-      [ Style.width 
-          (window_.width - toolBars_.width)
-      , Style.height 
-          (window_.height - toolBars_.height)
-      , Style.left toolBars_.width
-      ]
-    , Canvas.onMouseDown (Tool tool.name << Down)
-    , Canvas.onMouseUp (Tool tool.name << Up)
-    ] 
-    []
+  div
+  [ Style.classes [ "screen", toString tool.name ] 
+  , style 
+    [ window.size.width - toolBars.size.width
+      |> Style.width
+    , window.size.height - toolBars.size.height
+      |> Style.height 
+    , Style.left toolBars.size.width
+    ]
+  , Canvas.onMouseDown (Tool tool.name << Down)
+  , Canvas.onMouseUp (Tool tool.name << Up)
+  ] 
+  []
 
 
 mainArea : State -> Html Msg
 mainArea {window, toolBars, canvas} =
-  let 
-    toolBars_ = 
-      toolBars.size
-
-    window_ =
-      window.size
-  in
-    div
-    [ class "main-work-area" 
+  div
+  [ class "main-work-area" 
+  , style 
+    [ window.size.width - toolBars.size.width
+      |> Style.width
+    , window.size.height - toolBars.size.height
+      |> Style.height 
+    , Style.left toolBars.size.width
+    ]
+  ]
+  [ Canvas.toHtml
+    [ class "main-canvas"
     , style 
-      [ Style.width 
-          (window_.width - toolBars_.width)
-      , Style.height 
-          (window_.height - toolBars_.height)
-      , Style.left toolBars_.width
+      [ Style.left canvas.position.x
+      , Style.top canvas.position.y
       ]
     ]
-    [ Canvas.toHtml
-      [ class "main-canvas"
-      , style 
-        [ Style.left canvas.position.x
-        , Style.top canvas.position.y
-        ]
-      ]
-      canvas.get
-    ]
+    canvas.get
+  ]
 
 
 

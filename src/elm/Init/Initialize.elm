@@ -31,14 +31,14 @@ from state =
     { size = windowSize }   
   , mouseMsgs =
     { canvas = 
-      { down = always NoOp
-      , up   = always NoOp
-      , move = always NoOp
+      { down = Nothing
+      , up   = Nothing
+      , move = Nothing
       }
     , subs =
-      { down = always NoOp
-      , up   = always NoOp
-      , move = always NoOp
+      { down = Nothing
+      , up   = Nothing
+      , move = Nothing
       }
     }
   , projectName = projectName

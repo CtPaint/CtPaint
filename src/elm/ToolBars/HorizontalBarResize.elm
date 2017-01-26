@@ -6,6 +6,8 @@ import Model          exposing (State, Model(..))
 import Message        exposing (Msg(..))
 import ToolBars.Types exposing (ToolbarMsg(..))
 import Mouse.Types    exposing (MouseDir(..), noPosition)
+import Mouse.Util     exposing (resetMousePacks)
+
 
 
 
@@ -13,6 +15,11 @@ update : MouseDir -> State -> (Model, Cmd Msg)
 update direction state =
   
   case direction of
+
+    Up _ ->
+
+      App (resetMousePacks state) ! []
+
 
     Down _ ->
       let 
@@ -28,28 +35,8 @@ update direction state =
           { mouseMsgs
           | subs =
             { subs
-            | move = 
-                Move >> mouseMsg
-            , up = 
-                Up >> mouseMsg
-            }
-          }
-        } ! []
-
-
-    Up _ ->
-      let 
-        { mouseMsgs } = state 
-        { subs } = mouseMsgs
-      in
-        App 
-        { state
-        | mouseMsgs =
-          { mouseMsgs
-          | subs =
-            { subs
-            | move = always NoOp
-            , up = always NoOp
+            | move = Just (Move >> mouseMsg)
+            , up = Just (Up >> mouseMsg)
             }
           }
         } ! []

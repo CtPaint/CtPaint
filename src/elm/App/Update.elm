@@ -23,14 +23,11 @@ update message state =
 
 
     Tick _ ->
-      let 
-        {canvas, pendingDraws} = state
-      in
-        List.foldr
-          onTick
-          (App state ! [])
-          state.pendingDraws
-        |>clearDraws
+      List.foldr
+        onTick
+        (App state ! [])
+        state.pendingDraws
+      |>clearDraws
 
 
     Tool name dir ->

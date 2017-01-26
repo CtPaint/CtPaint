@@ -29,10 +29,13 @@ type Error
 
 
 type alias MousePack =
-  { down : Position -> Msg 
-  , up : Position -> Msg
-  , move : Position -> Msg
+  { down : Maybe (Position -> Msg) 
+  , up : Maybe (Position -> Msg)
+  , move : Maybe (Position -> Msg)
   }
+
+
+
 
 
 

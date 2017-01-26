@@ -36,7 +36,7 @@ initDev =
   Initialize.from
   { window = { size = Nothing } 
   , projectName = "dev"
-  , canvasSize = Size 200 200
+  , canvasSize = Size 600 600
   , ready = True
   , initColor = Black
   }

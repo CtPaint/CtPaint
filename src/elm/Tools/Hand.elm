@@ -9,7 +9,7 @@ import Mouse       exposing (Position)
 import Window      exposing (Size)
 import Canvas      exposing (getCanvasSize)
 import Tools.Util  exposing (withinCanvas)
-
+import Mouse.Util  exposing (resetMousePacks)
 
 
 update : MouseDir -> State -> (Model, Cmd Msg)
@@ -18,31 +18,20 @@ update dir state =
   case dir of
 
     Up position ->
-      let
-        {mouseMsgs} = state
-        {subs} = mouseMsgs
-      in
-        App
-        { state
-        | mouseMsgs = 
-          { mouseMsgs 
-          | subs =
-            { subs
-            | move = always NoOp
-            , up = always NoOp
-            }
-          }
-        } ! []
+
+      App (resetMousePacks state) ! []
 
 
     Down position ->
       if withinCanvas state.canvas position then
         let
 
-          x = position.x - state.canvas.position.x
-          y = position.y - state.canvas.position.y
+          p =
+            Position
+              (position.x - state.canvas.position.x)
+              (position.y - state.canvas.position.y)
 
-          {mouseMsgs} = state
+          {mouseMsgs, toolBars} = state
           {subs} = mouseMsgs
 
         in
@@ -53,8 +42,8 @@ update dir state =
             { mouseMsgs 
             | subs =
               { subs
-              | move = onMove state.toolBars.size (Position x y)
-              , up = Up >> Tool Hand
+              | move = Just (onMove toolBars.size p)
+              , up   = Just (Up >> Tool Hand)
               }
             }
           } ! []

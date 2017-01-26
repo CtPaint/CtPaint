@@ -10,8 +10,8 @@ import Mouse       exposing (Position)
 import Window      exposing (Size)
 import Canvas      exposing (getCanvasSize)
 import Color       exposing (Color)
+import Mouse.Util  exposing (resetMousePacks)
 
-import Debug exposing (log)
 
 
 update : MouseDir -> State -> (Model, Cmd Msg)
@@ -20,20 +20,9 @@ update dir state =
   case dir of
 
     Up position ->
-      let
-        {mouseMsgs} = state
-        {subs} = mouseMsgs
-      in
-        App
-        { state 
-        | mouseMsgs =
-          { mouseMsgs
-          | subs = 
-            { subs
-            | move = always NoOp
-            }
-          }
-        } ! []
+
+      App (resetMousePacks state) ! []
+
 
 
     Down position ->
@@ -59,11 +48,11 @@ update dir state =
           { mouseMsgs
           | subs =
             { subs
-            | move = Tool Pencil << Move 
+            | move = Just (Tool Pencil << Move)
             }
           , canvas =
             { canvas 
-            | move = onMove p Color.white
+            | move = Just (onMove p Color.white)
             }
           }
         } ! []
@@ -82,16 +71,20 @@ update dir state =
         App
         { state
         | pendingDraws =
-            (canvas.move p) :: pendingDraws
+            case canvas.move of
+              Nothing ->
+                pendingDraws
+              Just move ->
+                (move p) :: pendingDraws
         , mouseMsgs =
           { mouseMsgs
           | subs =
             { subs
-            | move = Tool Pencil << Move  
+            | move = Just (Tool Pencil << Move ) 
             }
           , canvas =
             { canvas 
-            | move = onMove p Color.white
+            | move = Just (onMove p Color.white)
             }
           }
         } ! []
