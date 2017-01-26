@@ -9,6 +9,8 @@ import Tools.Names    exposing (ToolName)
 import Draw.Types     exposing (DrawMsg)
 import Mouse.Types    exposing (MouseDir)
 import Time           exposing (Time)
+import Keyboard.Types exposing (KeyboardDir)
+import Keyboard       exposing (KeyCode)
 
 
 
@@ -21,6 +23,7 @@ type Msg
   | Draw DrawMsg
   | Tick Time
   | GetWindowSize (Result Error Size)
+  | Keyboard KeyboardDir KeyCode
   | NoOp
 
 

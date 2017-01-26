@@ -28,7 +28,10 @@ update dir state =
     Down position ->
       let
         {mouseMsgs, pendingDraws} = state
+
         {subs, canvas} = mouseMsgs
+
+        color = state.palette.primary.tl
 
         p =
           Position
@@ -38,12 +41,7 @@ update dir state =
         App
         { state
         | pendingDraws =
-            let
-              msg =
-                Line p p Color.white
-                |> Draw
-            in
-              msg :: pendingDraws
+            (Draw <| Line p p color) :: pendingDraws
         , mouseMsgs =
           { mouseMsgs
           | subs =
@@ -52,7 +50,7 @@ update dir state =
             }
           , canvas =
             { canvas 
-            | move = Just (onMove p Color.white)
+            | move = Just (onMove p color)
             }
           }
         } ! []
@@ -61,7 +59,10 @@ update dir state =
     Move position ->
       let
         {mouseMsgs, pendingDraws, toolBars} = state
+
         {subs, canvas} = mouseMsgs
+
+        color = state.palette.primary.tl
 
         p =
           Position
@@ -84,7 +85,7 @@ update dir state =
             }
           , canvas =
             { canvas 
-            | move = Just (onMove p Color.white)
+            | move = Just (onMove p color)
             }
           }
         } ! []

@@ -9,6 +9,7 @@ import Toolbars.Update as Toolbar
 import Init.Main       as Init
 import Tools.Update    as Tools
 import Draw.Update     as Draw
+import Keyboard.Update as Keyboard
 
 
 
@@ -16,6 +17,11 @@ update : Msg -> State -> (Model, Cmd Msg)
 update message state =
   
   case message of
+
+    Keyboard dir code ->
+
+      Keyboard.update code dir state
+
 
     Draw drawMessage ->
 
@@ -79,7 +85,9 @@ update message state =
 
 clearDraws : (Model, Cmd Msg) -> (Model, Cmd Msg)
 clearDraws (model, cmd) =
+
   case model of
+  
     App state ->
       
       App
@@ -95,11 +103,16 @@ clearDraws (model, cmd) =
 
 onTick : Msg -> (Model, Cmd Msg) -> (Model, Cmd Msg)
 onTick msg (model, cmd) =
+
   case model of
+  
     App state ->
+  
       update msg state 
 
+
     _ ->
+
       (model, cmd)
 
       

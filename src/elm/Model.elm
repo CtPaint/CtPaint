@@ -8,7 +8,9 @@ import Init.Types  exposing (InitColor)
 import Tools.Types exposing (Tool)
 import Tools.Names exposing (ToolName)
 import Canvas      exposing (Canvas)
-
+import Draw.Types  exposing (DrawMsg(..))
+import Color       exposing (Color)
+import Color.Types exposing (PrimaryPalette)
 
 
 type Model
@@ -34,6 +36,10 @@ type alias State =
     , subs : MousePack
     }
   , pendingDraws : List Msg
+  , palette :
+    { primary : PrimaryPalette
+    , general : List Color
+    }
   }
 
 

@@ -2,10 +2,12 @@ module App.Subscriptions exposing (subscriptions)
 
 
 import Model   exposing (Model(..), State)
-import Message exposing (Msg(OnWindowResize, Tick))
-import Mouse   exposing (moves, ups, downs, Position)
+import Message exposing (Msg(OnWindowResize, Tick, Keyboard))
+import Mouse   exposing (Position)
 import Window  exposing (resizes)
 import AnimationFrame exposing (diffs)
+import Keyboard as K
+import Keyboard.Types exposing (KeyboardDir(..))
 
 
 
@@ -15,9 +17,9 @@ subscriptions state =
     {subs} = state.mouseMsgs 
   in
     baseSubs
-    |>add moves subs.move
-    |>add ups subs.up
-    |>add downs subs.down
+    |>add Mouse.moves subs.move
+    |>add Mouse.ups subs.up
+    |>add Mouse.downs subs.down
     |>Sub.batch
 
 
@@ -25,6 +27,7 @@ baseSubs : List (Sub Msg)
 baseSubs =
   [ resizes OnWindowResize
   , diffs Tick
+  , K.ups (Keyboard Up)
   ]
 
 

@@ -9,6 +9,7 @@ import Tools.Tools as Tools
 import Window      exposing (Size)
 import Maybe       exposing (withDefault)
 import Mouse       exposing (Position)
+import Color.Palette as Palette
 import Canvas     
 import Color
 
@@ -68,8 +69,18 @@ from state =
 
     }
 
-  , tool = Tools.hand
+  , tool = Tools.pencil
 
   , pendingDraws = []
+
+  , palette = 
+    { primary =
+      { tl = Color.rgb 241 29 35
+      , tr = Color.rgb 23 92 254
+      , bl = Color.rgb 176 166 153
+      , br = Color.white
+      }
+    , general = Palette.init
+    }
   
   }   
