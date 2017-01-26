@@ -12,6 +12,7 @@ import Mouse.Types     exposing (MouseDir(..), noPosition)
 import ToolBars.Types  exposing (ToolbarMsg(..))
 import Window          exposing (Size)
 import Tools.Components.Button as Button
+import Color.View      as Color
 
 
 vertical : State -> Html Msg
@@ -24,25 +25,33 @@ vertical {toolBars, tool} =
   
 
 
-horizontal : Size -> ToolBars -> Html Msg
-horizontal window {size} =
-  div
-  [ class "horizontal-tool-bar" 
-  , style
-    [ Style.height size.height
-    , Style.width (window.width - size.width)
-    , Style.left size.width
+horizontal : State -> Html Msg
+horizontal state =
+  let
+    toolBars  = state.toolBars.size
+    window    = state.window.size
+    {palette} = state
+  in
+    div
+    [ class "horizontal-tool-bar" 
+    , style
+      [ Style.height toolBars.height
+      , Style.width (window.width - toolBars.width)
+      , Style.left toolBars.width
+      ]
     ]
-  ]
-  [ div
-    [ class "horizontal-tool-bar-edge" 
-    , Down noPosition
-      |>HorizontalBarResize
-      |>Toolbar
-      |>onMouseDown
+    [ div
+      [ class "horizontal-tool-bar-edge" 
+      , Down noPosition
+        |>HorizontalBarResize
+        |>Toolbar
+        |>onMouseDown
+      ]
+      []
+    , Color.view 
+        palette.primary
+        palette.general 
     ]
-    []
-  ]
 
 
 

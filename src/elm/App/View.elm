@@ -17,9 +17,7 @@ view state =
   div
   [ class "main" ]
   [ Toolbars.vertical state
-  , Toolbars.horizontal 
-      state.window.size
-      state.toolBars 
+  , Toolbars.horizontal state
   , mainArea state
   , screen state
   ]

@@ -12,7 +12,6 @@ import ToolBars.Types  exposing (ToolbarMsg(..))
 
 
 
-
 render : ToolName -> Tool -> Html Msg
 render currentTool {name, icon} =
   let
