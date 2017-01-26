@@ -30,6 +30,7 @@ update message state =
           onTick
           (App state ! [])
           state.pendingDraws
+        |>clearDraws
 
 
     Tool name dir ->
@@ -77,6 +78,22 @@ update message state =
     _ -> 
 
       App state ! []
+
+
+clearDraws : (Model, Cmd Msg) -> (Model, Cmd Msg)
+clearDraws (model, cmd) =
+  case model of
+    App state ->
+      
+      App
+      { state
+      | pendingDraws = []
+      } ! []
+
+
+    _ ->
+
+      (model, cmd)
 
 
 onTick : Msg -> (Model, Cmd Msg) -> (Model, Cmd Msg)

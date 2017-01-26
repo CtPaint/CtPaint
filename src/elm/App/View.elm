@@ -44,6 +44,7 @@ screen {window, toolBars, tool} =
       , Style.left toolBars_.width
       ]
     , Canvas.onMouseDown (Tool tool.name << Down)
+    , Canvas.onMouseUp (Tool tool.name << Up)
     ] 
     []
 

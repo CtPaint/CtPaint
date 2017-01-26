@@ -11,6 +11,7 @@ import Window      exposing (Size)
 import Canvas      exposing (getCanvasSize)
 import Color       exposing (Color)
 
+import Debug exposing (log)
 
 
 update : MouseDir -> State -> (Model, Cmd Msg)
@@ -30,7 +31,6 @@ update dir state =
           | subs = 
             { subs
             | move = always NoOp
-            , up = always NoOp
             }
           }
         } ! []
@@ -38,13 +38,13 @@ update dir state =
 
     Down position ->
       let
-        {mouseMsgs, pendingDraws, canvas} = state
-        {subs} = mouseMsgs
+        {mouseMsgs, pendingDraws} = state
+        {subs, canvas} = mouseMsgs
 
         p =
           Position
-            (position.x - canvas.position.x)
-            (position.y - canvas.position.y)
+            (position.x - state.canvas.position.x)
+            (position.y - state.canvas.position.y)
       in
         App
         { state
@@ -59,7 +59,11 @@ update dir state =
           { mouseMsgs
           | subs =
             { subs
-            | move = onMove p Color.white 
+            | move = Tool Pencil << Move 
+            }
+          , canvas =
+            { canvas 
+            | move = onMove p Color.white
             }
           }
         } ! []
@@ -67,23 +71,27 @@ update dir state =
 
     Move position ->
       let
-        {mouseMsgs, pendingDraws, canvas} = state
-        {subs} = mouseMsgs
+        {mouseMsgs, pendingDraws, toolBars} = state
+        {subs, canvas} = mouseMsgs
 
         p =
           Position
-            (position.x - canvas.position.x)
-            (position.y - canvas.position.y)
+            (position.x - state.canvas.position.x - toolBars.size.width)
+            (position.y - state.canvas.position.y)
       in
         App
         { state
         | pendingDraws =
-            (subs.move p) :: pendingDraws
+            (canvas.move p) :: pendingDraws
         , mouseMsgs =
           { mouseMsgs
           | subs =
             { subs
-            | move = onMove p Color.white 
+            | move = Tool Pencil << Move  
+            }
+          , canvas =
+            { canvas 
+            | move = onMove p Color.white
             }
           }
         } ! []
