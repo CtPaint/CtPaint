@@ -80,7 +80,9 @@ from state =
       , bl = Color.rgb 176 166 153
       , br = Color.white
       }
+
     , general = Palette.init
+    
     }
   
   }   
