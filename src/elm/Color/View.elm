@@ -8,32 +8,42 @@ import Color           exposing (Color)
 import Message         exposing (Msg(..))
 import Color.Util      as Color
 
-import Debug exposing (log)
-
 
 
 view : PrimaryPalette -> List Color -> Html Msg
 view primaryPalette generalPalette =
   div
   [ class "palette-container" ]
-  [ topRow primaryPalette.tl primaryPalette.tr
+  [ primary primaryPalette
   ]
 
 
-topRow : Color -> Color -> Html Msg
-topRow left right =
+primary : PrimaryPalette -> Html Msg
+primary {tl, tr, bl, br} =
   div
   [ class "primary-top-row" ]
   [ div
     [ class "primary-swatch tl"
     , style 
-      [ ("background", Color.toHex left) ]
+      [ ("background", Color.toHex tl) ]
     ]
     []
   , div
     [ class "primary-swatch tr"
     , style 
-      [ ("background", Color.toHex right) ]
+      [ ("background", Color.toHex tr) ]
+    ]
+    []
+  , div
+    [ class "primary-swatch bl" 
+    , style 
+      [ ("background", Color.toHex bl) ]
+    ]
+    []
+  , div
+    [ class "primary-swatch br" 
+    , style 
+      [ ("background", Color.toHex br) ]
     ]
     []
   ]
